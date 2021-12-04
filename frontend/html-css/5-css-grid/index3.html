@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="style.css">
+  <title>CSS Grid</title>
+
+  <style>
+    .wrapper {
+      display: grid;
+      grid-template-columns: 1fr 2fr 1fr;
+      grid-auto-rows: minmax(100px, auto);
+      grid-gap: 1em;
+      /* Put the grid element at the start of the column.
+      Similar to align-items in flexbox
+       */
+      /* justify-items: start; */
+      justify-items: stretch;
+      /* Similar to justify above, but for the row */
+      /* align-items: start; */
+      align-items: stretch;
+    }
+
+    .wrapper>div {
+      background: #eee;
+      padding: 1em;
+    }
+
+    .wrapper>div:nth-child(odd) {
+      background: #ddd;
+    }
+
+    .box-1 {
+      /* The self align/justify control for indiviual boxes */
+      /* align-self: flex-start; */
+
+      /* Make the box occupy grid columns 1 to 3 (first 2 columns) */
+      grid-column: 1/3;
+      /* Make the box occupy grid rows 1 to 3 (first 2 rows) */
+      grid-row: 1/3;
+    }
+
+    .box-2 {
+      /* align-self: flex-end; */
+      /* Specify the column the box occupies.
+      Just like ordering in flexbox
+      */
+      grid-column: 3;
+      grid-row: 1/3;
+    }
+
+    .box-3 {
+      /* justify-self: end */
+
+      grid-column: 2/4;
+      grid-row: 3;
+    }
+
+    .box-4 {
+      /* Grid boxes can also overlap */
+      grid-column: 1;
+      grid-row: 2/4;
+      border: 1px solid #333;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="box-1">Box 1</div>
+    <div class="box-2">Box 2</div>
+    <div class="box-3">Box 3</div>
+    <div class="box-4">Box 4</div>
+  </div>
+</body>
+
+</html>

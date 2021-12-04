@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="style.css">
+  <title>CSS Grid</title>
+
+  <style>
+    .wrapper>div {
+      background: #eee;
+      padding: 1em;
+    }
+
+
+    .wrapper>div:nth-child(odd) {
+      background: #ddd;
+    }
+
+    .wrapper {
+      display: grid;
+      grid-template-columns: 70% 30%;
+      /* column-gap: 1em; */
+      /* row-gap: 1em; */
+      gap: 1em;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="main">
+      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nisi laborum a omnis perspiciatis, aperiam non odit
+        inventore suscipit praesentium doloribus quod saepe sint provident exercitationem repellendus iure assumenda
+        deleniti. Recusandae quae, error aliquid vel perspiciatis ullam nam veniam velit ad eveniet iure consequuntur id
+        distinctio necessitatibus quisquam dolorum harum. Rerum fugiat alias, doloremque molestias incidunt reiciendis
+        vel tenetur iure omnis illum dignissimos vero quod, natus magnam soluta excepturi enim. Expedita, voluptatibus
+        explicabo ipsa laborum reprehenderit quidem quae quisquam aliquam ab!</p>
+    </div>
+
+    <div class="sidbar">
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi rem voluptates minima ipsa obcaecati at
+        repudiandae recusandae unde esse? Esse ratione pariatur incidunt autem rem atque quasi culpa cupiditate
+        excepturi.</p>
+    </div>
+
+    <div class="main">
+      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nisi laborum a omnis perspiciatis, aperiam non odit
+        inventore suscipit praesentium doloribus quod saepe sint provident exercitationem repellendus iure assumenda
+        deleniti. Recusandae quae, error aliquid vel perspiciatis ullam nam veniam velit ad eveniet iure consequuntur id
+        distinctio necessitatibus quisquam dolorum harum. Rerum fugiat alias, doloremque molestias incidunt reiciendis
+        vel tenetur iure omnis illum dignissimos vero quod, natus magnam soluta excepturi enim. Expedita, voluptatibus
+        explicabo ipsa laborum reprehenderit quidem quae quisquam aliquam ab!</p>
+    </div>
+
+    <div class="sidbar">
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi rem voluptates minima ipsa obcaecati at
+        repudiandae recusandae unde esse? Esse ratione pariatur incidunt autem rem atque quasi culpa cupiditate
+        excepturi.</p>
+    </div>
+  </div>
+</body>
+
+</html>
