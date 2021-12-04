@@ -1,0 +1,116 @@
+body {
+  background-color: #f4f4f4;
+  color: #555;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 1.6em;
+  margin: 0;
+}
+
+.container {
+  width: 80%;
+  margin: auto;
+  /* No scroll bars if content is too big to fit in the specified area */
+  /* This also creates a new Block Formatting Context.
+  Margins are collapsed in the same BFC, but not between adjacent BFCs
+
+  In a block formatting context, boxes are laid out one after the other,
+  vertically, beginning at the top of a containing block.
+  The vertical distance between two sibling boxes is determined by the 'margin' properties.
+  Vertical margins between adjacent block-level boxes in a block formatting context collapse.
+  In a block formatting context, each box's left outer edge touches the left edge
+  of the containing block (for right-to-left formatting, right edges touch)
+
+  https://www.w3.org/TR/CSS21/visuren.html#block-formatting
+  https://medium.com/@ritz078/block-formatting-contexts-in-css-3a9555355019
+  */
+  overflow: hidden;
+}
+
+.clr {
+  clear: both;
+}
+
+#main-header {
+  background-color: coral;
+  color: white;
+}
+
+#navbar {
+  background-color: #333;
+  color: white;
+}
+
+#navbar ul {
+  padding: 0px;
+  list-style: none;
+}
+
+#navbar li {
+  display: inline;
+}
+
+#navbar a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  padding-right: 15px;
+}
+
+#showcase {
+  background-image: url('images/showcase.jpg');
+  background-position: center right;
+  /* With min-height, the height will grow to accomodate the text. Making the page more responsive */
+  min-height: 300px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+#showcase h1 {
+  color: #fff;
+  font-size: 50px;
+  /* Increase spacing between lines. Required due to large font size */
+  line-height: 1.6em;
+  /* Push the text downards */
+  padding-top: 30px;
+}
+
+#main {
+  float: left;
+  width: 70%;
+  padding: 0 30px;
+  box-sizing: border-box;
+}
+
+#sidebar {
+  background: #333;
+  color: #fff;
+  float: right;
+  width: 30%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+#main-footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+}
+
+/* All styles under this would apply for page width <= 600px
+What we do here is to not float the main and sidebar if the width is too small.
+Instead they should go top to bottom
+ */
+@media(max-width:600px) {
+  #main {
+    width:100%;
+    float: none;
+  }
+
+  #sidebar {
+    width:100%;
+    float: none;
+  }
+}

@@ -1,0 +1,263 @@
+/* Remove default padding and margin from all elments like this */
+/* * {
+  padding: 0;
+  margin: 0;
+} */
+
+/* Apply to all links (<a>) tags */
+a {
+  /* Remove the underline */
+  text-decoration: none;
+  color: black;
+}
+
+/* When the cursor is over the link */
+a:hover {
+  color: red;
+}
+
+/* When you click-press on the link */
+a:active {
+  color: blue;
+}
+
+/* When a URL has been visited */
+a:visited {
+  color: black;
+}
+
+body {
+  background-color: #f4f4f4;
+  color: #555;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  font-weight: normal;
+  /* same as above */
+  /* font: normal 16px Arial, Helvetica, sans-serif; */
+
+  /* em is a unit for responsive websites */
+  /* height of the line take by the text. This affects the height of the content area of element */
+  line-height: 1.6em;
+  /* Get rid of the margins.
+  Headings have margins by default and this will not get rid of that.
+  So there will still be space around the h1 */
+  margin: 0;
+}
+
+.container {
+  /* A width given in pixels will not be responsive;
+  It will adjust to the width of the page/browser */
+  /* width: 960px; */
+  /* Use 80% of the available width. This will respond to the browser's width.
+  Mostly, when dealing with containers, you do want to use % with widths */
+  width: 80%;
+  /* margin is spacing around an element
+  auto margin applies equal margin on both left and right sides,
+  placing the container in the middle. */
+  margin: auto;
+}
+
+.button {
+  background-color: #333;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+}
+
+.button:hover {
+  background-color: red;
+  color: white;
+}
+
+.clr {
+  clear: both;
+}
+
+
+/* Box Model in CSS
+https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Box_Model/Introduction_to_the_CSS_box_model
+We have the content that is the element we are rendering: div, span, a, img, etc
+There is a border around the content. The border is not normally used, unless you want to render a border around the element
+Padding is the space between the element and the border
+Margin is the space outside the border. It can be considered as the margin from the limits of the container (e.g. surrounding div) that contains the element
+  The margin is used to separate an element from its neighbors. Margins can be shared between the boxes so they might not be clearly defined
+  https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Box_Model/Mastering_margin_collapsing
+  Simple case: In case of two adjacent elements with margin, the margin is collapsed and the greater of the margins of the two elements is used as the total margin
+The CSS properties can be written as:
+margin-top/bottom/right/left:
+margin: top right bottom left
+margin: vertical horizontal
+
+*/
+
+/* Style the box-1 class */
+.box-1 {
+  background-color: #333;
+  color: #fff;
+  /* Below 4 lines are the same as -> border: 5px red solid; */
+  /* border-top: 5px red solid;
+  border-right: 5px red solid;
+  border-bottom: 5px red solid;
+  border-left: 5px red solid; */
+  border-width: 3px;
+  border-bottom-width: 10px;
+  border-top-style: dotted;
+  border: 5px red solid;
+
+  padding: 20px;
+  margin: 20px 0;
+}
+
+/* style any h1 inside the box-1 class */
+.box-1 h1 {
+  font-family: Tahoma;
+  font-weight: 800;
+  font-style: italic;
+  text-decoration: underline;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  word-spacing: 1em;
+}
+
+.box-2 {
+  border: 3px dotted #ccc;
+  padding: 20px;
+  margin: 20px 0;
+}
+
+.categories {
+  border: 1px solid #ccc;
+  /* Rounded border */
+  border-radius: 15px;
+  padding: 10px;
+}
+
+.categories h2 {
+  text-align: center;
+}
+
+.categories ul {
+  padding: 0;
+  padding-left: 20px;
+  /* No bullet-points */
+  list-style: none;
+}
+
+.categories li {
+  padding-bottom: 6px;
+  border-bottom: dotted 1px #333;
+  list-style-image: url('images/checkmark.png')
+}
+
+.my-form {
+  padding: 20px;
+}
+
+.my-form .form-group {
+  padding-bottom: 15px;
+}
+
+.my-form label {
+  display: block;
+}
+
+.my-form input[type="text"], .my-form input[type="email"], .my-form textarea {
+  padding: 8px;
+  width: 100%;
+}
+
+/* Floating
+The below classes show the use of floating elements horizontally, as opposed to the normal vertical */
+.block {
+  /* Normally, block elements are put (float) on top of each other.
+  We can change this behavior. Here we make the block class float left-to-right */
+  float: left;
+  width: 33.3%;
+  border: 1px solid #ccc;
+  padding: 10px;
+  /* This will include the border and padding when calculating the width.
+  Without it the 3 floating divs will not fit on one line
+  since the content takes 1/3rd of the total available width without including
+  the border and the padding. So border-box the width of the actual content
+  will decrease by 2*(10 + 1)= 22px */
+  box-sizing: border-box;
+}
+
+#main-block {
+  float: left;
+  width: 70%;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+#sidebar {
+  float: right;
+  width: 30%;
+  background-color: #333;
+  color: #fff;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+/* Positioning
+Default: Static
+static: renders element in order of the normal document flow
+relative: the elements is positioned relative to its normal position. We can add properties like top/left/right/bottom to push it where we want
+absolute: Allow us to position the element where ever we want inside of a relative element
+fixed: The position is fixed relative to the browser window. Scrolling has no effect
+initial: Set the property to the default value of the element
+inherit: Inherit the parent's positioning value
+*/
+.p-box {
+  width: 800px;
+  height: 500px;
+  border: 1px solid #000;
+  margin-top: 30px;
+  /* This will make sure that the child elements of .p-box with absolute position
+  have their positions relative to this .p-box element.
+  Since we don't provide and top/left/etc properties here, the position of
+  this element itself is not affected */
+  position: relative;
+  background-image: url('images/background.jpg');
+  /* background-position: 100px -250px; */
+  background-position: center bottom;
+  background-repeat: no-repeat;
+}
+
+.p-box h1 {
+  /* If the h1 is inside an element that has position: relative,
+  it will be placed relative to that element.
+  Otherwise, it will be placed relative the page */
+  position: absolute;
+  top: 100px;
+  left: 200px;
+}
+
+.p-box h2 {
+  position: absolute;
+  right: 100px;
+  bottom: 40px;
+}
+
+.fix-me {
+  /* This will be stuck at a fixed position on the page, unaffected by scrolling */
+  position: fixed;
+  top: 300px;
+}
+
+/* Pseudo classes */
+.my-list li:first-child {
+  background: gray;
+}
+
+.my-list li:last-child {
+  background: green;
+}
+
+.my-list li:nth-child(5) {
+  background: violet;
+}
+
+.my-list li:nth-child(even) {
+  background: yellow;
+}
