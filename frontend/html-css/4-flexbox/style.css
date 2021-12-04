@@ -1,0 +1,76 @@
+@media(min-width: 468px) {
+  .container-1 {
+    /* Will automatically place the child elements in a row */
+    display: flex;
+
+    /* Controls how to align the items in the axis perpendicular to the flow.
+    flex-start with align the top of all the boxes, the bottom of the boxes
+    will not be aligned then, resulting in boxes with different heights.
+    Default is stretch */
+    /* align-items: flex-start; */
+    /* align-items: flex-end; */
+    /* align-items: center; */
+
+    /* Controls the direction of the flow. Default is row */
+    /* flex-direction: column; */
+  }
+
+  .container-2 {
+    display: flex;
+    /* Flex content alignment on the axis of flow.
+    align-items was on the perpendicular axis */
+    /* Evenly spaces the boxes.
+  This takes effect if the total width of the items do not take the entire space
+  e.g. when the width of the boxes is reduced */
+    justify-content: space-between;
+    /* justify-content: flex-start; */
+  }
+}
+
+.container-3 {
+  display: flex;
+  /* Controls if the flex can be multi-line */
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+
+.container-1 div,
+.container-2 div,
+.container-3 div {
+  border: 1px #ccc solid;
+  padding: 10px;
+}
+
+.box-1 {
+  /* Control the ratio of the width of the flex boxes
+  When all the boxes in the flex container have flex=1,
+  it means that all boxes shall have equal width
+   */
+  flex: 2;
+  /* Controls the order in which the boxes appear.
+  We don't have to change the HTML */
+  order: 2;
+}
+
+.box-2 {
+  flex: 1;
+  order: 1;
+}
+
+.box-3 {
+  flex: 1;
+  order: 3;
+}
+
+
+.container-2-box {
+  /* width: 25%; */
+  /* Controls the width in flexbox mode. Use this instead of width for flex items */
+  flex-basis: 27%;
+}
+
+.container-3-box {
+  /* flex: 1; */
+  flex-basis: 10%;
+}
