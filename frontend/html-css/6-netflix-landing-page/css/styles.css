@@ -1,0 +1,464 @@
+:root {
+  --primary-color: #e50914;
+  --dark-color: #141414;
+}
+
+/* Global */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+
+  /* Probably only works on Mac */
+  /* -webkit-font-smoothing: antialiased; */
+  background: #000;
+  color: #999;
+}
+
+ul {
+  list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: #fff;
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+}
+
+p {
+  margin: 0.5rem;
+}
+
+img {
+  width: 100%;
+}
+
+
+/* *******Showcase******* */
+.showcase {
+  width: 100%;
+  height: 93vh;
+  position: relative;
+  background: url('../images/background.jpg') no-repeat center center;
+  background-size: cover;
+}
+
+/* Add a shadow on the entire showcase */
+.showcase::after {
+  /* The shadow will be at the bottom-most layer */
+  z-index: 1;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgb(0, 0, 0, 0.6);
+  /* Add soft box shadows */
+  box-shadow: inset 120px 100px 250px #000, inset -120px -100px 250px #000;
+}
+
+.showcase-top {
+  /* Move the items above the shadow, so the shadow does not affect them */
+  z-index: 2;
+  position: relative;
+  height: 90px;
+}
+
+.showcase-content {
+  /* Move the items above the shadow, so the shadow does not affect them */
+  z-index: 2;
+  position: relative;
+  margin: auto;
+
+  /* Items flowing top to bottom in flex mode */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* Move the content to the center horizontally */
+  align-items: center;
+  text-align: center;
+  /* Move the content down to around in the center of the showcase  */
+  margin-top: 9rem;
+}
+
+.showcase-top img {
+  width: 170px;
+
+  /* This is will put the image in the middle of the showcase-top container  */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  /* By default, the top-left corner of the image will be in the center of
+  the container. This will put the middle of the image at the center */
+  transform: translate(-50%, -50%);
+}
+
+.showcase-top a {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translate(-50%, -50%);
+}
+
+.showcase-content h1 {
+  font-weight: 700;
+  font-size: 5.2rem;
+  /* Set Line-height same as the height of the font. Normally it is a bit bigger */
+  line-height: 1em;
+  margin: 0 0 2rem;
+}
+
+.showcase-content p {
+  text-transform: uppercase;
+  color: #fff;
+  font-weight: 400;
+  font-size: 1.9rem;
+  line-height: 1.25em;
+  margin: 0 0 2rem;
+}
+
+/* *******Tabs******* */
+.tab-content {
+  padding: 3rem 0;
+  color: #fff;
+}
+
+.tabs {
+  background: var(--dark-color);
+  padding-top: 1rem;
+  border-bottom: 3px solid #3d3d3d;
+}
+
+.tabs .container {
+  /* Puts the three tabs in a grid consisting of three columns */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1em;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.tabs .container>div {
+  padding: 1.5rem 0;
+}
+
+.tabs .container>div:hover {
+  color: #fff;
+  cursor: pointer;
+}
+
+.tab-border {
+  border-bottom: 4px solid var(--primary-color);
+}
+
+.tabs p {
+  font-size: 1.2rem;
+  padding-top: 0.5rem;
+}
+
+/* Hide tabs initially */
+#tab-1-content,
+#tab-2-content,
+#tab-3-content {
+  display: none;
+}
+
+.show {
+  /* !important makes display: block take precedence so it does not get overidden */
+  display: block !important;
+}
+
+#tab-1-content .tab-1-content-inner {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+}
+
+#tab-2-content .tab-2-content-top {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+#tab-2-content .tab-2-content-bottom {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+#tab-3-content .tab-3-content-top {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Table */
+.table {
+  width: 100%;
+  margin-top: 2rem;
+  /* Removes the gap between the table columns */
+  border-collapse: collapse;
+  border-spacing: 0rem;
+}
+
+.table thead th {
+  text-transform: uppercase;
+  padding: 0.8rem;
+}
+
+.table tbody tr td {
+  color: #999;
+  padding: 0.8rem 1.2rem;
+  text-align: center;
+}
+
+.table tbody tr td:first-child {
+  text-align: left;
+}
+
+.table tbody tr:nth-child(odd) {
+  background-color: #222;
+}
+
+/* Footer */
+.footer {
+  max-width: 75%;
+  margin: 1rem auto;
+  overflow: auto;
+}
+
+.footer,
+.footer a {
+  color: #999;
+  font-size: 0.9rem;
+}
+
+.footer p {
+  margin-bottom: 1.5rem;
+}
+
+.footer-cols {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.footer li {
+  line-height: 1.9em;
+}
+
+/* ****Utility**** */
+.container {
+  max-width: 70%;
+  margin: auto;
+  overflow: hidden;
+  padding: 0 2rem;
+}
+
+/* Text styles */
+.text-dark {
+  color: #999;
+}
+
+
+.text-md {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.text-lg {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+/* Buttons */
+.btn {
+  /* The element is inline in terms of flow but inside formatted as a block.
+  This allows to have top-bottom margins for inline elements
+    */
+  display: inline-block;
+  background: var(--primary-color);
+  color: #fff;
+  padding: 0.4rem 1.3rem;
+  font-size: 1rem;
+  text-align: center;
+  border: none;
+  /* Mouse hover cursor */
+  cursor: pointer;
+  margin-right: 0.5rem;
+  /* Outline is like border, it is drawn outside the border,
+  is not part of the element's dimensions so it may overlap other content */
+  outline: none;
+  box-shadow: 0 1px 0 rgb(0, 0, 0, 0.45);
+  border-radius: 2px;
+}
+
+.btn:hover {
+  /* Make the button a little see-through */
+  opacity: 0.9;
+}
+
+.btn-rounded {
+  border-radius: 5px;
+}
+
+.btn-lg {
+  font-size: 1rem;
+  padding: 0.8rem 1.3rem;
+  text-transform: uppercase;
+}
+
+
+.btn-xl {
+  font-size: 2rem;
+  padding: 1.5rem 2.1rem;
+  text-transform: uppercase;
+}
+
+.btn-icon {
+  margin-left: 1rem;
+}
+
+/* Media queries */
+@media (max-width: 960px) {
+  .showcase {
+    height: 70vh;
+  }
+
+  .hide-sm {
+    display: none;
+  }
+
+  .showcase-top img {
+    top: 30%;
+    left: 5%;
+    transform: translate(0);
+  }
+
+  .showcase-content h1 {
+    font-size: 3.7rem;
+    line-height: 1em;
+  }
+
+  .showcase-content p {
+    font-size: 1.5rem;
+  }
+
+  .footer-cols {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .btn-xl {
+    font-size: 1.5rem;
+    padding: 1.4rem 2rem;
+  }
+
+  .text-md {
+    font-size: 1.3rem;
+  }
+
+  .text-lg {
+    font-size: 1rem;
+  }
+}
+
+@media(max-width: 700px) {
+  .showcase::after {
+    background: rgb(0, 0, 0, 0.6);
+    box-shadow: inset 80px 80px 250px #000, inset -80px -80px 250px #000;
+  }
+
+  #tab-1-content .tab-1-content-inner {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  #tab-2-content .tab-2-content-top {
+    display: block;
+    text-align: center;
+  }
+
+  #tab-2-content .tab-2-content-bottom {
+    grid-template-columns: 1fr;
+  }
+
+  #tab-3-content .tab-3-content-top {
+    display: block;
+    text-align: center;
+  }
+}
+
+@media(max-width: 500px) {
+  .container {
+    max-width: 90%;
+    padding: 1rem;
+  }
+
+  .showcase {
+    height: 65vh;
+  }
+
+  .showcase-top img {
+    width: 120px;
+  }
+
+  .showcase-top a {
+    transform: translate(-25%, -50%);
+  }
+
+  .showcase-content {
+    margin-top: 4em;
+  }
+
+  .showcase-content h1 {
+    font-size: 2.0em;
+  }
+
+  .showcase-content p {
+    font-size: 1.1rem;
+  }
+
+  .tabs .container {
+    gap: 3rem;
+  }
+
+  .tab-3-content-bottom {
+    overflow: scroll;
+  }
+
+  .btn-lg {
+    font-size: 0.9rem;
+    padding: 0.6rem 1rem;
+  }
+
+  .btn-xl {
+    font-size: 1.0rem;
+    padding: 1.0rem 2rem;
+  }
+
+  .btn {
+    margin-right: 0;
+  }
+}
