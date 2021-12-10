@@ -49,10 +49,12 @@ header {
   color: $secondary-color;
 }
 
-// Main
+// Main Page
 main {
   padding: 4rem;
-  height: 100%;
+  // The entire viewport height minus the footer height
+  // This will keep the footer at the bottom
+  min-height: calc(100vh - 60px);
 
   .icons {
     margin-top: 1rem;
@@ -73,6 +75,61 @@ main {
       margin-top: 20vh;
     }
   }
+}
+
+// About Page //
+.about-info {
+  display: grid;
+  gap: 30px;
+  grid-template-areas:
+    "bioimage bio bio"
+    "job1 job2 job3";
+  grid-template-columns: repeat(3, 1fr);
+
+  div.bio-image {
+    width: 250px;
+    height: 250px;
+    background: $profile-image no-repeat center center / cover;
+  }
+
+  .bio-image {
+    grid-area: bioimage;
+    margin: auto;
+    border-radius: 50%;
+    border: 3px solid $secondary-color;
+  }
+
+  .bio {
+    grid-area: bio;
+    font-size: 1.5rem;
+  }
+
+  .job {
+    background: lighten($primary-color, 5);
+    padding: 0.5rem;
+    border-bottom: 5px solid $secondary-color;
+  }
+
+  .job-1 {
+    grid-area: job1;
+  }
+
+  .job-2 {
+    grid-area: job2;
+  }
+
+  .job-3 {
+    grid-area: job3;
+  }
+}
+
+// Footer
+#main-footer {
+  text-align: center;
+  padding: 1rem;
+  background: darken($primary-color, 10);
+  color: set-text-color($primary-color);
+  height: 60px;
 }
 
 @import "mobile";
