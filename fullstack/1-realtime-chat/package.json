@@ -1,0 +1,14 @@
+{
+  "name": "realtime-chat",
+  "version": "1.0.0",
+  "description": "Realtime Chat Application using GraphQL, React and WebSockets",
+  "main": "index.js",
+  "author": "Abdullah Baig",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "server",
+    "client"
+  ],
+  "dependencies": {}
+}
