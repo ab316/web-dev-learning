@@ -15,7 +15,8 @@
     "graphql": "^16.1.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "shards-react": "^1.0.3"
+    "shards-react": "^1.0.3",
+    "subscriptions-transport-ws": "^0.11.0"
   },
   "devDependencies": {
     "@babel/core": "^7.16.5",

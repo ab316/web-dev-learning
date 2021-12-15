@@ -1,17 +1,27 @@
 import React from 'react';
+import {Container, Row, Col, FormInput, Button} from 'shards-react';
 import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
   useQuery,
   useMutation,
+  useSubscription,
   gql,
 } from '@apollo/client';
-import {Container, Row, Col, FormInput, Button} from 'shards-react';
+import {WebSocketLink} from '@apollo/client/link/ws';
+
+const wsLink = new WebSocketLink({
+  uri: 'ws://localhost:4000',
+  options: {
+    reconnect: true,
+  },
+});
 
 const client = new ApolloClient({
   uri: 'http://localhost:4000/',
   cache: new InMemoryCache(),
+  link: wsLink,
 });
 
 const GET_MESSAGES = gql`
@@ -30,8 +40,19 @@ const POST_MESSAGE = gql`
   }
 `;
 
+const MESSAGES_SUBSCRIPTION = gql`
+  subscription messages {
+    messages {
+      id
+      user
+      content
+    }
+  }
+`;
+
 const Messages = ({myUser}) => {
-  const {loading, error, data} = useQuery(GET_MESSAGES, {pollInterval: 500});
+  // const {loading, error, data} = useQuery(GET_MESSAGES);
+  const {loading, error, data} = useSubscription(MESSAGES_SUBSCRIPTION);
 
   if (loading) {
     return <div>Loading...</div>;
