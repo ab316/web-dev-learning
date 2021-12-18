@@ -164,10 +164,6 @@ img {
   grid-row: 1 / span 2;
 }
 
-.cli .grid > *:last-child {
-  grid-column: 3;
-}
-
 /* Cloud */
 .cloud .grid {
   grid-template-columns: 4fr 3fr;
