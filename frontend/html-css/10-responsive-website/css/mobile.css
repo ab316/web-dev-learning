@@ -28,8 +28,6 @@
   .showcase-form {
     justify-self: center;
     margin: auto;
-    width: 100vw;
-    top: 0;
   }
 
   .cli .grid > *:first-child {
@@ -72,5 +70,9 @@
   .navbar ul {
     padding: 10px;
     background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  .showcase-form {
+    width: 300px;
   }
 }
