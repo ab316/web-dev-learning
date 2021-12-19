@@ -10,23 +10,16 @@ import {
 } from '@material-ui/core';
 import useStyles from './styles';
 import PlaceDetails from '../PlaceDetails';
+import {Place} from '../../interfaces';
 
-const List = () => {
+interface ListProps {
+  places: Place[];
+}
+
+const List = (props: ListProps) => {
   const classes = useStyles();
   const [type, setType] = useState('restaurants');
   const [rating, setRating] = useState('');
-
-  const places = [
-    {name: 'Cool Place'},
-    {name: 'Super Cool Place'},
-    {name: 'Very Cool Place'},
-    {name: 'Cool Place'},
-    {name: 'Super Cool Place'},
-    {name: 'Very Cool Place'},
-    {name: 'Cool Place'},
-    {name: 'Super Cool Place'},
-    {name: 'Very Cool Place'},
-  ];
 
   const handleTypeChange = (e: React.ChangeEvent<{value: unknown}>) => {
     setType(e.target.value as string);
@@ -62,7 +55,7 @@ const List = () => {
       </FormControl>
 
       <Grid container spacing={3} className={classes.list}>
-        {places?.map((place, i) => (
+        {props.places.map((place, i) => (
           <Grid item key={i} xs={12}>
             <PlaceDetails place={place} />
           </Grid>
