@@ -6,5 +6,6 @@ declare module 'styled-components' {
       header: string;
       body: string;
     };
+    mobile: string;
   }
 }

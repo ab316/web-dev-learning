@@ -9,6 +9,7 @@ const theme = {
     body: '#fff',
     footer: '#003333',
   },
+  mobile: '768px',
 };
 
 function App() {
@@ -16,9 +17,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <GlobalStyles />
       <Header />
-      <Container>
-        <h1>Hello World</h1>
-      </Container>
+      <Container></Container>
     </ThemeProvider>
   );
 }
