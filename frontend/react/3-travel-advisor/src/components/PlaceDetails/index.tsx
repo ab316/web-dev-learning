@@ -1,5 +1,5 @@
-const PlaceDetails = () => {
-  return <h1>PlaceDetails</h1>;
+const PlaceDetails = (props: {place: {name: string}}) => {
+  return <h1>{props.place.name}</h1>;
 };
 
 export default PlaceDetails;
