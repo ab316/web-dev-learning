@@ -1,12 +1,9 @@
-import Head from "next/head";
 import ArticleList from "../components/ArticleList";
 
 export default function Home({ articles }) {
   return (
     <div>
-      <Head>
-        <title>NextJs</title>
-      </Head>
+      <title>NextJs</title>
       <ArticleList articles={articles} />
     </div>
   );
