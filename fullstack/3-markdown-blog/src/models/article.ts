@@ -1,6 +1,7 @@
 import {Schema, model} from 'mongoose';
-import marked from 'marked';
 import slugify from 'slugify';
+import sanitizeHtml from 'sanitize-html';
+import {marked} from 'marked';
 
 interface Article {
   title: string;
@@ -8,6 +9,7 @@ interface Article {
   markdown: string;
   createdAt: Date;
   slug: string;
+  sanitizedHtml: string;
 }
 
 const articleSchema = new Schema<Article>({
@@ -31,6 +33,10 @@ const articleSchema = new Schema<Article>({
     required: true,
     unique: true,
   },
+  sanitizedHtml: {
+    type: String,
+    required: true,
+  },
 });
 
 // Create the slug automatically before schema validation of the item being saved
@@ -38,6 +44,10 @@ const articleSchema = new Schema<Article>({
 articleSchema.pre('validate', async function () {
   if (this.title) {
     this.slug = slugify(this.title, {lower: true, strict: true});
+  }
+
+  if (this.markdown) {
+    this.sanitizedHtml = sanitizeHtml(marked(this.markdown));
   }
 });
 
