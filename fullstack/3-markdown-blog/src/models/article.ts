@@ -3,7 +3,7 @@ import slugify from 'slugify';
 import sanitizeHtml from 'sanitize-html';
 import {marked} from 'marked';
 
-interface Article {
+export interface IArticle {
   title: string;
   description?: string;
   markdown: string;
@@ -12,7 +12,7 @@ interface Article {
   sanitizedHtml: string;
 }
 
-const articleSchema = new Schema<Article>({
+const articleSchema = new Schema<IArticle>({
   title: {
     type: String,
     required: true,
@@ -51,4 +51,4 @@ articleSchema.pre('validate', async function () {
   }
 });
 
-export default model<Article>('Article', articleSchema);
+export default model<IArticle>('Article', articleSchema);
