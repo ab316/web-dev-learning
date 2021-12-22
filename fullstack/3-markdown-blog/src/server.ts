@@ -1,31 +1,36 @@
 import express from 'express';
 import articleRouter from './routes/articles';
+import Article from './models/article';
+import mongoose from 'mongoose';
 
-const PORT = 5000;
-const app = express();
+async function setup() {
+  if (!process.env.MONGODB_PASS) {
+    console.error(
+      'Set the env variable MONGODB_PASS to the password of the MongoDB admin user',
+    );
+    process.exit(1);
+  }
+  await mongoose.connect(
+    `mongodb+srv://admin:${process.env.MONGODB_PASS}@cluster0.pjuci.mongodb.net/markdown-blog`,
+  );
+  console.log('Connected to mongo db');
 
-const articles = [
-  {
-    title: 'Test Article 1',
-    createdAt: new Date(),
-    description: 'Test description',
-  },
+  const PORT = 5000;
+  const app = express();
 
-  {
-    title: 'Test Article 2',
-    createdAt: new Date(),
-    description: 'Test description 2',
-  },
-];
+  app.set('view engine', 'ejs');
+  app.use(express.urlencoded({extended: false}));
+  app.use('/articles', articleRouter);
 
-app.set('view engine', 'ejs');
+  app.get('/', async (req, res) => {
+    const articles = await Article.find().sort({createdAt: 'desc'});
+    console.log(articles);
+    res.render('articles/index', {articles});
+  });
 
-app.use('/articles', articleRouter);
+  app.listen(PORT, () => {
+    console.log(`Server listening on port ${PORT}`);
+  });
+}
 
-app.get('/', (req, res) => {
-  res.render('articles/index', {articles});
-});
-
-app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`);
-});
+setup();

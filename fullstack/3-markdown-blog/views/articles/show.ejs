@@ -10,14 +10,17 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
-    <title>Blog</title>
+    <title><%= article.title %></title>
   </head>
   <body>
     <div class="container">
-      <h1 class="mb-4">New Article</h1>
-      <form action="/articles/new" method="POST">
-        <%- include('_form_fields') %>
-      </form>
+      <h1 class="mb-1"><%= article.title %></h1>
+      <div class="text-muted mb-2">
+        <%= article.createdAt.toLocaleDateString() %>
+      </div>
+      <a href="/" class="btn btn-secondary">All Articles</a>
+      <a href="/articles/edit/<%= article.id %>" class="btn btn-info">Edit</a>
+      <div><%= article.markdown %></div>
     </div>
   </body>
 </html>
