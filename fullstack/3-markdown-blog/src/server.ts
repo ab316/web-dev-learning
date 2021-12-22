@@ -1,7 +1,10 @@
 import express from 'express';
-import articleRouter from './routes/articles';
-import Article from './models/article';
 import mongoose from 'mongoose';
+import methodOverride from 'method-override';
+
+import articleRouter from './routes/articles';
+
+import Article from './models/article';
 
 async function setup() {
   if (!process.env.MONGODB_PASS) {
@@ -20,6 +23,8 @@ async function setup() {
 
   app.set('view engine', 'ejs');
   app.use(express.urlencoded({extended: false}));
+  // Allows to use DELETE/PUT/PATCH methods with forms
+  app.use(methodOverride('_method'));
   app.use('/articles', articleRouter);
 
   app.get('/', async (req, res) => {

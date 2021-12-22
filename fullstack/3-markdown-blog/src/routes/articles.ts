@@ -36,6 +36,12 @@ router.post('/new', async (req, res) => {
   }
 });
 
+router.delete('/:id', async (req, res) => {
+  await Article.findByIdAndDelete(req.params.id);
+  console.log(`Deleted article ${req.params.id}`);
+  res.redirect('/');
+});
+
 // function respondError(e, res) {
 //   if (e instanceof MongooseError.ValidationError) {
 //     res.status(400).send(e.message);

@@ -27,6 +27,15 @@
         <a href="articles/<%= article.slug %>" class="btn btn-primary"
           >Read More</a
         >
+
+        <!-- We need to use a Form here. If it is a link then the webcrawlers (e.g. Google indexer) will click it and can delete our articles -->
+        <form
+          action="/articles/<%= article.id %>?_method=DELETE"
+          method="POST"
+          class="d-inline"
+        >
+          <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
       </div>
       <% }) %>
     </div>
