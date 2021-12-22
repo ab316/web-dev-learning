@@ -8,11 +8,11 @@ router.get('/new', (req, res) => {
   res.render('articles/new', {article: new Article()});
 });
 
-router.get('/:id', async (req, res) => {
+router.get('/:slug', async (req, res) => {
   try {
-    const article = await Article.findById(req.params.id);
-    if (article) {
-      res.render('articles/show', {article});
+    const article = await Article.find({slug: req.params.slug});
+    if (article.length > 0) {
+      res.render('articles/show', {article: article[0]});
     } else {
       res.redirect('/');
     }
@@ -29,7 +29,7 @@ router.post('/new', async (req, res) => {
   });
   try {
     const savedArticle = await article.save();
-    res.redirect(`articles/${savedArticle.id}`);
+    res.redirect(`${savedArticle.slug}`);
   } catch (e: unknown) {
     console.error('Failed to save article', e);
     res.render('articles/new', {article});
