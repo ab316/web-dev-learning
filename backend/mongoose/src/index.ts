@@ -28,7 +28,7 @@ async function setup() {
 
     await user1.save();
 
-    const user2 = await User.create({
+    let user2 = await User.create({
       name: 'User 2',
       // email: ' ', // This will fail due to the minLength constraint
       // email: 'missing.atsign.gmail.com', // This will fail due to custom validation check
@@ -38,12 +38,18 @@ async function setup() {
       // This will still create an array with a single value since hobbies is an array
       hobbies: 'Cooking',
     });
+    console.log('user 2', user2);
 
-    user2.name = 'User 2 updated';
+    user2.name = 'User 2U';
     // This will not be saved as createdAt is set to immutable
     user2.createdAt = new Date('2020-01-01');
-    await user2.save();
+    user2 = await user2.save();
 
+    console.log('User 2 updated', user2);
+
+    // Mongoose queries are not promises, even though they can be used with async/await syntax and have a .then method
+    // Calling .then multiple times on the query will actually run the query multiple times
+    // https://mongoosejs.com/docs/queries.html
     const updateResult = await User.updateOne(
       {_id: user2.id},
       // {email: 'user2.updatedgmail.com'},
@@ -56,7 +62,7 @@ async function setup() {
     const res = await User.where('age').gt(12).select(['name', 'age']);
     console.log('Where age > 12 result:', res);
 
-    // user1.bestFriend = user2
+    // Set user1's bestFriend to be user2
     await User.findByIdAndUpdate(
       {_id: user1._id},
       {bestFriend: user2._id},
@@ -78,6 +84,25 @@ async function setup() {
     } else {
       console.log('user.bestFriend is a Document');
     }
+
+    // Instance method for models
+    user1.sayHello();
+
+    await User.create({
+      name: 'abdullah',
+      email: 'abdullah@gmail.com',
+      age: 28,
+    });
+
+    const findByNameUser = await User.findByName('abdullah');
+    console.log('static findyByName user:', findByNameUser);
+
+    console.log(
+      'custom query',
+      await User.find().where('age').gt(10).byName('abdullah'),
+    );
+
+    console.log('Virtual property', user1.nameEmail);
   } catch (e: unknown) {
     if (e instanceof Error) console.error(e.message);
   }
