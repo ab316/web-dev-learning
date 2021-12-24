@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
+import { useParams } from "react-router-dom";
 import { io, Socket } from "socket.io-client";
-import Quill, { DeltaOperation, TextChangeHandler } from "quill";
+import Quill, { TextChangeHandler } from "quill";
 import Delta from "quill-delta";
 import "quill/dist/quill.snow.css";
 
@@ -18,9 +19,28 @@ const TOOLBAR_OPTIONS: any = [
 
 const TextEditor = () => {
   const wrapperRef = useRef<HTMLDivElement>(null);
+  const { id: documentId } = useParams();
   const [socket, setSocket] = useState<Socket>();
   const [quill, setQuill] = useState<Quill>();
 
+  // Create Editor
+  useEffect(() => {
+    if (wrapperRef.current) {
+      wrapperRef.current.innerHTML = "";
+      const editor = document.createElement("div");
+      wrapperRef.current.append(editor);
+
+      const q = new Quill(editor, {
+        theme: "snow",
+        modules: { toolbar: TOOLBAR_OPTIONS },
+      });
+      q.disable();
+      q.setText("Loading...");
+      setQuill(q);
+    }
+  }, [wrapperRef]);
+
+  // Connect socket
   useEffect(() => {
     console.log("Connecting to server");
     const s = io("http://localhost:3001");
@@ -37,19 +57,18 @@ const TextEditor = () => {
     };
   }, []);
 
+  // Load Document
   useEffect(() => {
-    if (wrapperRef.current) {
-      wrapperRef.current.innerHTML = "";
-      const editor = document.createElement("div");
-      wrapperRef.current.append(editor);
+    if (!quill || !socket || !documentId) return;
 
-      const q = new Quill(editor, {
-        theme: "snow",
-        modules: { toolbar: TOOLBAR_OPTIONS },
-      });
-      setQuill(q);
-    }
-  }, [wrapperRef]);
+    socket.once("load-document", (document) => {
+      console.log("Document loaded", document);
+      quill.setContents(document);
+      quill.enable();
+    });
+
+    socket.emit("get-document", documentId);
+  }, [socket, quill, documentId]);
 
   // Send change
   useEffect(() => {
