@@ -4,6 +4,11 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
 
+import authRoute from './routes/auth';
+import usersRoute from './routes/users';
+
+// import {User} from './models';
+
 const config = dotenv.config().parsed as dotenv.DotenvParseOutput;
 
 async function setup() {
@@ -16,6 +21,9 @@ async function setup() {
   app.use(express.json());
   app.use(helmet());
   app.use(morgan('dev'));
+
+  app.use('/api/auth', authRoute);
+  app.use('/api/users', usersRoute);
 
   const errorHandler: express.ErrorRequestHandler = (err, req, res, _next) => {
     console.error(err.stack);
