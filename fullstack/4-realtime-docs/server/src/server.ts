@@ -1,4 +1,5 @@
 import { Server } from "socket.io";
+import { instrument } from "@socket.io/admin-ui";
 import mongoose from "mongoose";
 import Document from "./schema/Document";
 
@@ -6,8 +7,15 @@ setup();
 
 async function setup() {
   const io = new Server(3001, {
-    cors: { origin: "http://localhost:3000", methods: ["GET", "POST"] },
+    cors: {
+      origin: ["http://localhost:3000", "https://admin.socket.io"],
+      credentials: true,
+      methods: ["GET", "POST"],
+    },
   });
+
+  // Add socket admin namespace. Online admin console: https://admin.socket.io/
+  instrument(io, { auth: false });
 
   await mongoose.connect(
     `mongodb+srv://admin:${process.env.MONGODB_PASS}@cluster0.pjuci.mongodb.net/realtime-docs?retryWrites=true&w=majority`
