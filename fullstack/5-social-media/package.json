@@ -1,0 +1,14 @@
+{
+  "name": "realtime-docs",
+  "version": "1.0.0",
+  "description": "Realtime Docs using Quill, React and Socket.io",
+  "main": "index.js",
+  "author": "Abdullah Baig",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "server",
+    "client"
+  ],
+  "dependencies": {}
+}
