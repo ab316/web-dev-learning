@@ -70,6 +70,17 @@ const TextEditor = () => {
     socket.emit("get-document", documentId);
   }, [socket, quill, documentId]);
 
+  // Save Document
+  useEffect(() => {
+    if (!quill || !socket || !documentId) return;
+    const interval = setInterval(() => {
+      console.log("Saving", socket.connected);
+      socket.emit("save-document", quill.getContents());
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, [socket, quill, documentId]);
+
   // Send change
   useEffect(() => {
     if (!quill || !socket) return;
