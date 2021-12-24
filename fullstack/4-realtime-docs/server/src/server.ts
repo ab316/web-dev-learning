@@ -3,6 +3,13 @@ import { instrument } from "@socket.io/admin-ui";
 import mongoose from "mongoose";
 import Document from "./schema/Document";
 
+const MONGODB_PROTOCOL = process.env.MONGODB_PROTOCOL ?? "mongodb+srv";
+const MONGODB_USER = process.env.MONGODB_USER ?? "admin";
+const MONGODB_PASS = process.env.MONGODB_PASS ?? "admin";
+const MONGODB_SERVER =
+  process.env.MONGODB_SERVER ?? "cluster0.pjuci.mongodb.net";
+const MONGODB_DB = process.env.MONGODB_DB ?? "realtime-docs";
+
 setup();
 
 async function setup() {
@@ -17,9 +24,8 @@ async function setup() {
   // Add socket admin namespace. Online admin console: https://admin.socket.io/
   instrument(io, { auth: false });
 
-  await mongoose.connect(
-    `mongodb+srv://admin:${process.env.MONGODB_PASS}@cluster0.pjuci.mongodb.net/realtime-docs?retryWrites=true&w=majority`
-  );
+  const dbUri = `${MONGODB_PROTOCOL}://${MONGODB_USER}:${MONGODB_PASS}@${MONGODB_SERVER}/${MONGODB_DB}?retryWrites=true&w=majority`;
+  await mongoose.connect(dbUri);
   console.log("Connected to DB");
 
   io.on("connection", (socket) => {
