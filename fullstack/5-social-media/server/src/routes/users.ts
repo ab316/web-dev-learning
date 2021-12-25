@@ -1,22 +1,10 @@
-import express, {Router} from 'express';
+import {Router} from 'express';
 import bcrypt from 'bcrypt';
+
+import {AuthorizedRequest} from './interfaces';
 import {User} from '../models';
 
 const router = Router();
-
-// type RequestWithoutParams<P> = Omit<express.Request, 'params'> & {params: P};
-
-// https://javascript.plainenglish.io/typed-express-request-and-response-with-typescript-7277aea028c
-interface TypedRequest<B> extends express.Request {
-  body: B;
-}
-
-interface AuthorizedRequest<B> extends TypedRequest<B> {
-  // Not Used. Concept only
-  user?: {
-    isAdmin: boolean;
-  };
-}
 
 router.get('/:id', async (req, res, next) => {
   try {
@@ -33,7 +21,7 @@ router.get('/:id', async (req, res, next) => {
 });
 
 // update
-router.put('/:id', async (req: AuthorizedRequest<{userId: string; password: string}>, res, next) => {
+router.put('/:id', async (req: AuthorizedRequest<{password: string}>, res, next) => {
   try {
     const user = await User.findById(req.body.userId);
     if (!user) return res.status(401).json({success: false});
@@ -55,7 +43,7 @@ router.put('/:id', async (req: AuthorizedRequest<{userId: string; password: stri
 });
 
 // delete
-router.delete('/:id', async (req: AuthorizedRequest<{userId: string}>, res, next) => {
+router.delete('/:id', async (req: AuthorizedRequest<Record<string, never>>, res, next) => {
   try {
     const user = await User.findById(req.body.userId);
     if (!user) return res.status(401).json({success: false});
@@ -73,7 +61,7 @@ router.delete('/:id', async (req: AuthorizedRequest<{userId: string}>, res, next
 
 // follow
 // This should be a transaction
-router.put('/:id/follow', async (req: AuthorizedRequest<{userId: string; password: string}>, res, next) => {
+router.put('/:id/follow', async (req: AuthorizedRequest<{password: string}>, res, next) => {
   try {
     if (req.params.id == req.body.userId) {
       return res.status(403).json({success: false, message: 'You can not follow yourself'});
@@ -98,7 +86,7 @@ router.put('/:id/follow', async (req: AuthorizedRequest<{userId: string; passwor
 
 // unfollow
 // This should be a transaction
-router.put('/:id/unfollow', async (req: AuthorizedRequest<{userId: string; password: string}>, res, next) => {
+router.put('/:id/unfollow', async (req: AuthorizedRequest<{password: string}>, res, next) => {
   try {
     if (req.params.id == req.body.userId) {
       return res.status(403).json({success: false, message: 'You can not unfollow yourself'});

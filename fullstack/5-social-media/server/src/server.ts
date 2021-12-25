@@ -32,6 +32,11 @@ async function setup() {
         message: 'Invalid request body format',
         hint: 'Verify that the request URL, body and, query is valid',
       });
+    } else if (err instanceof mongoose.Error.ValidationError) {
+      return res.status(400).json({
+        success: false,
+        message: err.message,
+      });
     }
     console.error(err.stack);
     res.status(500).send({success: false, message: 'Server Error'});
