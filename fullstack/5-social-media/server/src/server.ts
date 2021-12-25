@@ -4,8 +4,7 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
 
-import authRoute from './routes/auth';
-import usersRoute from './routes/users';
+import {authRoute, usersRoute, postsRoute} from './routes';
 
 // import {User} from './models';
 
@@ -24,6 +23,7 @@ async function setup() {
 
   app.use('/api/auth', authRoute);
   app.use('/api/users', usersRoute);
+  app.use('/api/posts', postsRoute);
 
   const errorHandler: express.ErrorRequestHandler = (err, req, res, _next) => {
     if (err instanceof SyntaxError || err instanceof mongoose.Error.CastError) {

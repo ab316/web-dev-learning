@@ -8,3 +8,5 @@ export interface TypedRequest<B> extends express.Request {
 }
 
 export type AuthorizedRequest<B> = TypedRequest<{userId: string} & B>;
+
+export type EmptyAuthorizedRequest = AuthorizedRequest<Record<string, never>>;

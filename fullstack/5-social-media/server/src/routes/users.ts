@@ -1,7 +1,7 @@
 import {Router} from 'express';
 import bcrypt from 'bcrypt';
 
-import {AuthorizedRequest} from './interfaces';
+import {AuthorizedRequest, EmptyAuthorizedRequest} from './interfaces';
 import {User} from '../models';
 
 const router = Router();
@@ -35,15 +35,15 @@ router.put('/:id', async (req: AuthorizedRequest<{password: string}>, res, next)
       return res.status(403).json({success: false, message: 'You can only update your own account'});
     }
 
-    const updatedUser = await User.findByIdAndUpdate(req.params.id, {$set: req.body});
-    res.json(updatedUser);
+    await User.findByIdAndUpdate(req.params.id, {$set: req.body});
+    res.json({success: true});
   } catch (err) {
     next(err);
   }
 });
 
 // delete
-router.delete('/:id', async (req: AuthorizedRequest<Record<string, never>>, res, next) => {
+router.delete('/:id', async (req: EmptyAuthorizedRequest, res, next) => {
   try {
     const user = await User.findById(req.body.userId);
     if (!user) return res.status(401).json({success: false});
