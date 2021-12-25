@@ -30,7 +30,7 @@ async function setup() {
       return res.status(400).json({
         success: false,
         message: 'Invalid request body format',
-        hint: 'Check the body JSON',
+        hint: 'Verify that the request URL, body and, query is valid',
       });
     }
     console.error(err.stack);

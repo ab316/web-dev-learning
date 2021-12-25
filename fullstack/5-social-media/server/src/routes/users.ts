@@ -72,6 +72,53 @@ router.delete('/:id', async (req: AuthorizedRequest<{userId: string}>, res, next
 });
 
 // follow
+// This should be a transaction
+router.put('/:id/follow', async (req: AuthorizedRequest<{userId: string; password: string}>, res, next) => {
+  try {
+    if (req.params.id == req.body.userId) {
+      return res.status(403).json({success: false, message: 'You can not follow yourself'});
+    }
+    const user = await User.findById(req.params.id);
+    const currentUser = await User.findById(req.body.userId);
+    if (!user || !currentUser) {
+      return res.status(!currentUser ? 401 : 403).json({success: false, message: 'Invalid request'});
+    }
+
+    if (!user.followers.includes(currentUser._id)) {
+      await User.findByIdAndUpdate(user._id, {$push: {followers: currentUser._id}});
+      await User.findByIdAndUpdate(currentUser._id, {$push: {followings: user._id}});
+      return res.send({success: true});
+    } else {
+      return res.status(403).json({success: false, message: 'Already following'});
+    }
+  } catch (err) {
+    next(err);
+  }
+});
+
 // unfollow
+// This should be a transaction
+router.put('/:id/unfollow', async (req: AuthorizedRequest<{userId: string; password: string}>, res, next) => {
+  try {
+    if (req.params.id == req.body.userId) {
+      return res.status(403).json({success: false, message: 'You can not unfollow yourself'});
+    }
+    const user = await User.findById(req.params.id);
+    const currentUser = await User.findById(req.body.userId);
+    if (!user || !currentUser) {
+      return res.status(!currentUser ? 401 : 403).json({success: false, message: 'Invalid request'});
+    }
+
+    if (user.followers.includes(currentUser._id)) {
+      await User.findByIdAndUpdate(user._id, {$pull: {followers: currentUser._id}});
+      await User.findByIdAndUpdate(currentUser._id, {$pull: {followings: user._id}});
+      return res.send({success: true});
+    } else {
+      return res.status(403).json({success: false, message: 'Not following'});
+    }
+  } catch (err) {
+    next(err);
+  }
+});
 
 export default router;
