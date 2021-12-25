@@ -9,6 +9,7 @@ import {authRoute, usersRoute, postsRoute} from './routes';
 // import {User} from './models';
 
 const config = dotenv.config().parsed as dotenv.DotenvParseOutput;
+const APP_PORT = config.APP_PORT ?? 8080;
 
 async function setup() {
   const app = express();
@@ -43,8 +44,8 @@ async function setup() {
   };
   app.use(errorHandler);
 
-  app.listen(8080, () => {
-    console.log(`Server running at port ${config.APP_PORT}`);
+  app.listen(APP_PORT, () => {
+    console.log(`Server running at port ${APP_PORT}`);
   });
 }
 
