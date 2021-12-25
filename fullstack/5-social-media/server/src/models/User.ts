@@ -1,7 +1,7 @@
 import {Schema, model, Types, SchemaTypes} from 'mongoose';
-import {ITimestamps} from './shared';
+import {ICommonDocument} from './shared';
 
-export interface IUser extends ITimestamps {
+export interface IUser extends ICommonDocument<IUser> {
   isAdmin: boolean;
   username: string;
   email: string;
@@ -10,6 +10,10 @@ export interface IUser extends ITimestamps {
   coverPicture: string;
   followers: Types.Array<Types.ObjectId>;
   followings: Types.Array<Types.ObjectId>;
+  about: string;
+  city: string;
+  from: string;
+  relationshipStatus: number;
 }
 
 const schema = new Schema<IUser>(
@@ -33,8 +37,17 @@ const schema = new Schema<IUser>(
     followers: [{type: SchemaTypes.ObjectId, ref: 'User'}],
     followings: [{type: SchemaTypes.ObjectId, ref: 'User'}],
     isAdmin: {type: Boolean, default: false},
+    about: {type: String, maxlength: 50},
+    city: {type: String, max: 50},
+    from: {type: String, max: 50},
+    relationshipStatus: {type: Number, enum: [1, 2, 3]},
   },
   {timestamps: true},
 );
+
+schema.methods.View = function (this: IUser) {
+  const {password: _pasword, ...others} = this._doc;
+  return others;
+};
 
 export default model<IUser>('User', schema);

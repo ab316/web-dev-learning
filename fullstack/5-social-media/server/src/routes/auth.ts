@@ -6,10 +6,6 @@ import {User} from '../models';
 
 const router = Router();
 
-router.get('/', (req, res) => {
-  res.send('Welcome to auth route');
-});
-
 router.post('/register', async (req, res, next) => {
   try {
     const salt = await bcrypt.genSalt(10);
@@ -20,7 +16,7 @@ router.post('/register', async (req, res, next) => {
       password: hashedPassword,
     });
     await user.save();
-    res.status(200).json(user);
+    res.status(200).json(user.View());
   } catch (err) {
     if ((err as MongoError).code == 11000) {
       res.status(400).json({
@@ -47,7 +43,7 @@ router.post('/login', async (req, res, next) => {
       res.status(401).json({success: false, message: 'Authentication failed'});
       return;
     }
-    res.json(user);
+    res.json(user.View());
   } catch (err) {
     next(err);
   }

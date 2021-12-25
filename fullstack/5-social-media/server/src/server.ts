@@ -26,8 +26,15 @@ async function setup() {
   app.use('/api/users', usersRoute);
 
   const errorHandler: express.ErrorRequestHandler = (err, req, res, _next) => {
+    if (err instanceof SyntaxError || err instanceof mongoose.Error.CastError) {
+      return res.status(400).json({
+        success: false,
+        message: 'Invalid request body format',
+        hint: 'Check the body JSON',
+      });
+    }
     console.error(err.stack);
-    res.status(500).send('Server Error');
+    res.status(500).send({success: false, message: 'Server Error'});
   };
   app.use(errorHandler);
 
