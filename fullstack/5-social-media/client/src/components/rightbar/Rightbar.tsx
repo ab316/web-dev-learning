@@ -12,13 +12,13 @@ const rightbar: FC<IProps> = ({profile}) => {
     return (
       <>
         <div className="birthdayContainer">
-          <img src="assets/birthday.png" alt="Birthday" className="birthdayImg" />
+          <img src="/assets/birthday.png" alt="Birthday" className="birthdayImg" />
           <span className="birthdayText">
             <b>Tom</b> and <b>3 other friends</b> have a birthday today
           </span>
         </div>
 
-        <img src="assets/ad.jpg" alt="Ad" className="rightbarAd" />
+        <img src="/assets/ad.jpg" alt="Ad" className="rightbarAd" />
         <h4 className="rightbarTitle">Online Frields</h4>
         <ul className="rightbarFriendList">
           {Users.map((u) => (
@@ -52,17 +52,17 @@ const rightbar: FC<IProps> = ({profile}) => {
         <h4 className="rightbarTitle">My Friends</h4>
         <div className="rightbarFollowings">
           <div className="rightbarFollowing">
-            <img src="assets/person/2.png" alt="Following" className="rightbarFollowingImg" />
+            <img src="/assets/person/2.png" alt="Following" className="rightbarFollowingImg" />
             <span className="rightbarFollowingName">Some guy</span>
           </div>
 
           <div className="rightbarFollowing">
-            <img src="assets/person/3.png" alt="Following" className="rightbarFollowingImg" />
+            <img src="/assets/person/3.png" alt="Following" className="rightbarFollowingImg" />
             <span className="rightbarFollowingName">Robot guy</span>
           </div>
 
           <div className="rightbarFollowing">
-            <img src="assets/person/4.png" alt="Following" className="rightbarFollowingImg" />
+            <img src="/assets/person/4.png" alt="Following" className="rightbarFollowingImg" />
             <span className="rightbarFollowingName">Funny guy</span>
           </div>
         </div>

@@ -40,8 +40,8 @@ const Post: FC<IProps> = ({post}) => {
 
         <div className="postBottom">
           <div className="postBottomLeft">
-            <img src="assets/like.svg" alt="like" className="likeIcon" onClick={likeHandler} />
-            <img src="assets/heart.svg" alt="heart" className="likeIcon" onClick={likeHandler} />
+            <img src="/assets/like.svg" alt="like" className="likeIcon" onClick={likeHandler} />
+            <img src="/assets/heart.svg" alt="heart" className="likeIcon" onClick={likeHandler} />
             <span className="postLikeCounter">{like} people like it</span>
           </div>
           <div className="postBottomRight">
