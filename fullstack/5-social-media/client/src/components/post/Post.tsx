@@ -1,15 +1,24 @@
-import {MoreVert, Favorite} from '@material-ui/icons';
+import {FC} from 'react';
+import {MoreVert} from '@material-ui/icons';
+import {Users} from '../../dummyData';
+import {IPost} from '../../interfaces';
 import './post.css';
 
-const Post = () => {
+interface IProps {
+  post: IPost;
+}
+
+const Post: FC<IProps> = ({post}) => {
+  const user = Users.filter((u) => u.id === post.userId)[0];
+
   return (
     <div className="post">
       <div className="postWrapper">
         <div className="postTop">
           <div className="postTopLeft">
-            <img src="assets/person/1.png" alt="Person 1" className="postProfileImg" />
-            <span className="postUsername">Wacky Racer</span>
-            <span className="postDate">5 minutes ago</span>
+            <img src={user.profilePicture} alt="Person 1" className="postProfileImg" />
+            <span className="postUsername">{user.username}</span>
+            <span className="postDate">{post.date}</span>
           </div>
           <div className="postTopRight">
             <MoreVert />
@@ -17,18 +26,18 @@ const Post = () => {
         </div>
 
         <div className="postCenter">
-          <span className="postText">Hey it's my first post here on Social App :)</span>
-          <img src="assets/post/1.jfif" alt="Mountains" className="postImg" />
+          <span className="postText">{post?.desc}</span>
+          <img src={post.photo} alt="Mountains" className="postImg" />
         </div>
 
         <div className="postBottom">
           <div className="postBottomLeft">
             <img src="assets/like.svg" alt="like" className="likeIcon" />
             <img src="assets/heart.svg" alt="heart" className="likeIcon" />
-            <span className="postLikeCounter">32 people like it</span>
+            <span className="postLikeCounter">{post.like} people like it</span>
           </div>
           <div className="postBottomRight">
-            <span className="postCommentText">9 comments</span>
+            <span className="postCommentText">{post.comment} comments</span>
           </div>
         </div>
       </div>
