@@ -1,4 +1,4 @@
-import {FC} from 'react';
+import {FC, useState} from 'react';
 import {MoreVert} from '@material-ui/icons';
 import {Users} from '../../dummyData';
 import {IPost} from '../../interfaces';
@@ -9,6 +9,14 @@ interface IProps {
 }
 
 const Post: FC<IProps> = ({post}) => {
+  const [like, setLike] = useState(post.like);
+  const [isLiked, setIsLiked] = useState(false);
+
+  const likeHandler = () => {
+    setLike(isLiked ? like - 1 : like + 1);
+    setIsLiked(!isLiked);
+  };
+
   const user = Users.filter((u) => u.id === post.userId)[0];
 
   return (
@@ -32,9 +40,9 @@ const Post: FC<IProps> = ({post}) => {
 
         <div className="postBottom">
           <div className="postBottomLeft">
-            <img src="assets/like.svg" alt="like" className="likeIcon" />
-            <img src="assets/heart.svg" alt="heart" className="likeIcon" />
-            <span className="postLikeCounter">{post.like} people like it</span>
+            <img src="assets/like.svg" alt="like" className="likeIcon" onClick={likeHandler} />
+            <img src="assets/heart.svg" alt="heart" className="likeIcon" onClick={likeHandler} />
+            <span className="postLikeCounter">{like} people like it</span>
           </div>
           <div className="postBottomRight">
             <span className="postCommentText">{post.comment} comments</span>
