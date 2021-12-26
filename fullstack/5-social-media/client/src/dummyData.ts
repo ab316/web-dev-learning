@@ -146,7 +146,7 @@ export const Posts = [
   {
     id: 15,
     desc: 'Think like a proton. Always positive.',
-    photo: 'assets/post/6.jfif',
+    photo: 'assets/post/2.jpg',
     date: '1 day ago',
     userId: 15,
     like: 150,
