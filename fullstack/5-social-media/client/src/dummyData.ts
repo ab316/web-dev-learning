@@ -1,26 +1,26 @@
 export const Users = [
-  {id: 1, profilePicture: '/assets/person/1.png', username: 'Mojo'},
-  {id: 2, profilePicture: '/assets/person/2.png', username: 'Persnickety'},
-  {id: 3, profilePicture: '/assets/person/3.png', username: 'Fisticuffs'},
-  {id: 4, profilePicture: '/assets/person/4.png', username: 'Doldrums'},
-  {id: 5, profilePicture: '/assets/person/5.png', username: 'Gossamer'},
-  {id: 6, profilePicture: '/assets/person/6.png', username: 'Gobbledygook'},
-  {id: 7, profilePicture: '/assets/person/7.svg', username: 'Flummox'},
-  {id: 8, profilePicture: '/assets/person/1.png', username: 'Shrubbery'},
-  {id: 9, profilePicture: '/assets/person/2.png', username: 'Blackguard'},
-  {id: 10, profilePicture: '/assets/person/3.png', username: 'Highfalutin'},
-  {id: 11, profilePicture: '/assets/person/4.png', username: 'Daedal'},
-  {id: 12, profilePicture: '/assets/person/5.png', username: 'Aplomb'},
-  {id: 13, profilePicture: '/assets/person/6.png', username: 'Gooseflesh'},
-  {id: 14, profilePicture: '/assets/person/7.svg', username: 'Bumbershoot'},
-  {id: 15, profilePicture: '/assets/person/1.png', username: 'Snooker'},
+  {id: 1, profilePicture: 'person/1.png', username: 'Mojo'},
+  {id: 2, profilePicture: 'person/2.png', username: 'Persnickety'},
+  {id: 3, profilePicture: 'person/3.png', username: 'Fisticuffs'},
+  {id: 4, profilePicture: 'person/4.png', username: 'Doldrums'},
+  {id: 5, profilePicture: 'person/5.png', username: 'Gossamer'},
+  {id: 6, profilePicture: 'person/6.png', username: 'Gobbledygook'},
+  {id: 7, profilePicture: 'person/7.svg', username: 'Flummox'},
+  {id: 8, profilePicture: 'person/1.png', username: 'Shrubbery'},
+  {id: 9, profilePicture: 'person/2.png', username: 'Blackguard'},
+  {id: 10, profilePicture: 'person/3.png', username: 'Highfalutin'},
+  {id: 11, profilePicture: 'person/4.png', username: 'Daedal'},
+  {id: 12, profilePicture: 'person/5.png', username: 'Aplomb'},
+  {id: 13, profilePicture: 'person/6.png', username: 'Gooseflesh'},
+  {id: 14, profilePicture: 'person/7.svg', username: 'Bumbershoot'},
+  {id: 15, profilePicture: 'person/1.png', username: 'Snooker'},
 ];
 
 export const Posts = [
   {
     id: 1,
     desc: '"The elevator to success is out of order. You\'ll have to use the stairs, one step at a time."',
-    photo: '/assets/post/1.jfif',
+    photo: 'post/1.jfif',
     date: '5 mins ago',
     userId: 1,
     like: 32,
@@ -29,7 +29,7 @@ export const Posts = [
   {
     id: 2,
     desc: "People often say that motivation doesn't last. Well, neither does bathing - that's why we recommend it daily.",
-    photo: '/assets/post/2.jpg',
+    photo: 'post/2.jpg',
     date: '6 mins ago',
     userId: 2,
     like: 30,
@@ -38,7 +38,7 @@ export const Posts = [
   {
     id: 3,
     desc: 'I always wanted to be somebody, but now I realise I should have been more specific.',
-    photo: '/assets/post/3.jfif',
+    photo: 'post/3.jfif',
     date: '20 mins ago',
     userId: 3,
     like: 200,
@@ -47,7 +47,7 @@ export const Posts = [
   {
     id: 4,
     desc: "I am so clever that sometimes I don't understand a single word of what I am saying",
-    photo: '/assets/post/4.jfif',
+    photo: 'post/4.jfif',
     date: '1 mins ago',
     userId: 4,
     like: 10,
@@ -56,7 +56,7 @@ export const Posts = [
   {
     id: 5,
     desc: 'People say nothing is impossible, but I do nothing every day.',
-    photo: '/assets/post/5.jfif',
+    photo: 'post/5.jfif',
     date: '1 mins ago',
     userId: 5,
     like: 10,
@@ -65,7 +65,7 @@ export const Posts = [
   {
     id: 6,
     desc: 'Life is like a sewer... what you get out of it depends on what you put into it',
-    photo: '/assets/post/6.jfif',
+    photo: 'post/6.jfif',
     date: 'just now',
     userId: 6,
     like: 100,
@@ -74,7 +74,7 @@ export const Posts = [
   {
     id: 7,
     desc: 'Change is not a four letter word... but often your reaction to it is!',
-    photo: '/assets/post/4.jfif',
+    photo: 'post/4.jfif',
     date: 'just now',
     userId: 7,
     like: 100,
@@ -83,7 +83,7 @@ export const Posts = [
   {
     id: 8,
     desc: 'If you think you are too small to make a difference, try sleeping with a mosquito',
-    photo: '/assets/post/1.jfif',
+    photo: 'post/1.jfif',
     date: '1 hour ago',
     userId: 8,
     like: 32,
@@ -92,7 +92,7 @@ export const Posts = [
   {
     id: 9,
     desc: 'Bad decisions make good stories.',
-    photo: '/assets/post/2.jpg',
+    photo: 'post/2.jpg',
     date: '2 hours ago',
     userId: 9,
     like: 35,
@@ -101,7 +101,7 @@ export const Posts = [
   {
     id: 10,
     desc: "I'll probably never fully become what I wanted to be when I grew up, but that's probably because I wanted to be a ninja princess.",
-    photo: '/assets/post/3.jfif',
+    photo: 'post/3.jfif',
     date: '2 hours ago',
     userId: 10,
     like: 200,
@@ -110,7 +110,7 @@ export const Posts = [
   {
     id: 11,
     desc: 'When life gives you lemons, squirt someone in the eye.',
-    photo: '/assets/post/4.jfif',
+    photo: 'post/4.jfif',
     date: '40 mins ago',
     userId: 11,
     like: 133,
@@ -119,7 +119,7 @@ export const Posts = [
   {
     id: 12,
     desc: 'A clear conscience is a sure sign of a bad memory.',
-    photo: '/assets/post/2.jfif',
+    photo: 'post/2.jfif',
     date: '1 hour ago',
     userId: 12,
     like: 10,
@@ -128,7 +128,7 @@ export const Posts = [
   {
     id: 13,
     desc: "I didn't fail the test. I just found 100 ways to do it wrong",
-    photo: '/assets/post/3.jfif',
+    photo: 'post/3.jfif',
     date: '2 hours ago',
     userId: 13,
     like: 33,
@@ -137,7 +137,7 @@ export const Posts = [
   {
     id: 14,
     desc: "I used to think I was indecisive, but now I'm not so sure",
-    photo: '/assets/post/6.jfif',
+    photo: 'post/6.jfif',
     date: '4 hour ago',
     userId: 14,
     like: 97,
@@ -146,7 +146,7 @@ export const Posts = [
   {
     id: 15,
     desc: 'Think like a proton. Always positive.',
-    photo: '/assets/post/2.jpg',
+    photo: 'post/2.jpg',
     date: '1 day ago',
     userId: 15,
     like: 150,

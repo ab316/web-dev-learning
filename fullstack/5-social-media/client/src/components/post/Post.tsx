@@ -9,6 +9,8 @@ interface IProps {
 }
 
 const Post: FC<IProps> = ({post}) => {
+  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+
   const [like, setLike] = useState(post.like);
   const [isLiked, setIsLiked] = useState(false);
 
@@ -24,7 +26,7 @@ const Post: FC<IProps> = ({post}) => {
       <div className="postWrapper">
         <div className="postTop">
           <div className="postTopLeft">
-            <img src={user.profilePicture} alt="Person 1" className="postProfileImg" />
+            <img src={`${PF}${user.profilePicture}`} alt="Person 1" className="postProfileImg" />
             <span className="postUsername">{user.username}</span>
             <span className="postDate">{post.date}</span>
           </div>
@@ -35,13 +37,13 @@ const Post: FC<IProps> = ({post}) => {
 
         <div className="postCenter">
           <span className="postText">{post?.desc}</span>
-          <img src={post.photo} alt="Mountains" className="postImg" />
+          <img src={`${PF}${post.photo}`} alt="Mountains" className="postImg" />
         </div>
 
         <div className="postBottom">
           <div className="postBottomLeft">
-            <img src="/assets/like.svg" alt="like" className="likeIcon" onClick={likeHandler} />
-            <img src="/assets/heart.svg" alt="heart" className="likeIcon" onClick={likeHandler} />
+            <img src={`${PF}like.svg`} alt="like" className="likeIcon" onClick={likeHandler} />
+            <img src={`${PF}heart.svg`} alt="heart" className="likeIcon" onClick={likeHandler} />
             <span className="postLikeCounter">{like} people like it</span>
           </div>
           <div className="postBottomRight">
