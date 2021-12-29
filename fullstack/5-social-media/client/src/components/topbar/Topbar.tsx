@@ -1,12 +1,15 @@
+import {Link} from 'react-router-dom';
 import {Search, Person, Chat, Notifications} from '@material-ui/icons';
 import './topbar.css';
 
-const index = () => {
+const Topbar = () => {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   return (
     <div className="topbarContainer">
       <div className="topbarLeft">
-        <span className="logo">Social App</span>
+        <Link to="/" style={{textDecoration: 'none'}}>
+          <span className="logo">Social App</span>
+        </Link>
       </div>
 
       <div className="topbarCenter">
@@ -44,4 +47,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Topbar;

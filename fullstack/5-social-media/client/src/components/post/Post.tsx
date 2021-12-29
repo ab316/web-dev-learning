@@ -1,8 +1,9 @@
-import {FC, useState} from 'react';
+import {FC, useEffect, useState} from 'react';
 import {MoreVert} from '@material-ui/icons';
-import {Users} from '../../dummyData';
-import {IPost} from '../../interfaces';
+import dayjs from 'dayjs';
+import {IPost, IUser} from '../../interfaces';
 import './post.css';
+import axios from 'axios';
 
 interface IProps {
   post: IPost;
@@ -11,24 +12,40 @@ interface IProps {
 const Post: FC<IProps> = ({post}) => {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
-  const [like, setLike] = useState(post.like);
+  const [like, setLike] = useState<number>(post.likes.length);
   const [isLiked, setIsLiked] = useState(false);
+  const [user, setUser] = useState<IUser>({
+    _id: 0,
+    profilePicture: `${PF}defaultProfile.svg`,
+    username: 'MISSING',
+  });
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const res = await axios.get(`users/${post.userId}`);
+      console.log(`user ${post.userId} fetched`, res.data);
+      const user: IUser = res.data;
+      if (!user.profilePicture || user.profilePicture.trim().length === 0) {
+        user.profilePicture = `${PF}defaultProfile.svg`;
+      }
+      setUser(res.data);
+    };
+    fetchUser();
+  }, [post, PF]);
 
   const likeHandler = () => {
     setLike(isLiked ? like - 1 : like + 1);
     setIsLiked(!isLiked);
   };
 
-  const user = Users.filter((u) => u.id === post.userId)[0];
-
   return (
     <div className="post">
       <div className="postWrapper">
         <div className="postTop">
           <div className="postTopLeft">
-            <img src={`${PF}${user.profilePicture}`} alt="Person 1" className="postProfileImg" />
+            <img src={user.profilePicture} alt="Person 1" className="postProfileImg" />
             <span className="postUsername">{user.username}</span>
-            <span className="postDate">{post.date}</span>
+            <span className="postDate">{dayjs(post.createdAt).fromNow()}</span>
           </div>
           <div className="postTopRight">
             <MoreVert />
@@ -37,7 +54,7 @@ const Post: FC<IProps> = ({post}) => {
 
         <div className="postCenter">
           <span className="postText">{post?.desc}</span>
-          <img src={`${PF}${post.photo}`} alt="Mountains" className="postImg" />
+          {post.img && <img src={`${PF}${post.img}`} alt="Mountains" className="postImg" />}
         </div>
 
         <div className="postBottom">

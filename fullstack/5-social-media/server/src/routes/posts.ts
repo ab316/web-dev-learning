@@ -5,9 +5,9 @@ import {EmptyAuthorizedRequest} from './interfaces';
 const router = Router();
 
 // get timeline: All posts for all followings of a user
-router.get('/timeline', async (req: EmptyAuthorizedRequest, res, next) => {
+router.get('/timeline/:userId', async (req, res, next) => {
   try {
-    const currentUser = await User.findById(req.body.userId);
+    const currentUser = await User.findById(req.params.userId);
     if (!currentUser) {
       return res.status(403).json({success: false, message: 'Invalid request'});
     }
@@ -17,7 +17,9 @@ router.get('/timeline', async (req: EmptyAuthorizedRequest, res, next) => {
     const currentUserPosts = await Post.find({userId: currentUser._id});
     const friendPosts = await Promise.all(currentUser.followings.map((friend) => Post.find({userId: friend._id})));
 
-    const postsArray = currentUserPosts.concat(...friendPosts);
+    const postsArray = currentUserPosts
+      .concat(...friendPosts)
+      .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
     return res.json(postsArray);
   } catch (err) {
     next(err);

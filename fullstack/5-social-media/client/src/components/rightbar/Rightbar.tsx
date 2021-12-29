@@ -23,7 +23,7 @@ const rightbar: FC<IProps> = ({profile}) => {
         <h4 className="rightbarTitle">Online Frields</h4>
         <ul className="rightbarFriendList">
           {Users.map((u) => (
-            <Online key={u.id} user={u} />
+            <Online key={u._id} user={u} />
           ))}
         </ul>
       </>

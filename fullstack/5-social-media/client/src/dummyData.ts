@@ -1,24 +1,24 @@
 export const Users = [
-  {id: 1, profilePicture: 'person/1.png', username: 'Mojo'},
-  {id: 2, profilePicture: 'person/2.png', username: 'Persnickety'},
-  {id: 3, profilePicture: 'person/3.png', username: 'Fisticuffs'},
-  {id: 4, profilePicture: 'person/4.png', username: 'Doldrums'},
-  {id: 5, profilePicture: 'person/5.png', username: 'Gossamer'},
-  {id: 6, profilePicture: 'person/6.png', username: 'Gobbledygook'},
-  {id: 7, profilePicture: 'person/7.svg', username: 'Flummox'},
-  {id: 8, profilePicture: 'person/1.png', username: 'Shrubbery'},
-  {id: 9, profilePicture: 'person/2.png', username: 'Blackguard'},
-  {id: 10, profilePicture: 'person/3.png', username: 'Highfalutin'},
-  {id: 11, profilePicture: 'person/4.png', username: 'Daedal'},
-  {id: 12, profilePicture: 'person/5.png', username: 'Aplomb'},
-  {id: 13, profilePicture: 'person/6.png', username: 'Gooseflesh'},
-  {id: 14, profilePicture: 'person/7.svg', username: 'Bumbershoot'},
-  {id: 15, profilePicture: 'person/1.png', username: 'Snooker'},
+  {_id: 1, profilePicture: 'person/1.png', username: 'Mojo'},
+  {_id: 2, profilePicture: 'person/2.png', username: 'Persnickety'},
+  {_id: 3, profilePicture: 'person/3.png', username: 'Fisticuffs'},
+  {_id: 4, profilePicture: 'person/4.png', username: 'Doldrums'},
+  {_id: 5, profilePicture: 'person/5.png', username: 'Gossamer'},
+  {_id: 6, profilePicture: 'person/6.png', username: 'Gobbledygook'},
+  {_id: 7, profilePicture: 'person/7.svg', username: 'Flummox'},
+  {_id: 8, profilePicture: 'person/1.png', username: 'Shrubbery'},
+  {_id: 9, profilePicture: 'person/2.png', username: 'Blackguard'},
+  {_id: 10, profilePicture: 'person/3.png', username: 'Highfalutin'},
+  {_id: 11, profilePicture: 'person/4.png', username: 'Daedal'},
+  {_id: 12, profilePicture: 'person/5.png', username: 'Aplomb'},
+  {_id: 13, profilePicture: 'person/6.png', username: 'Gooseflesh'},
+  {_id: 14, profilePicture: 'person/7.svg', username: 'Bumbershoot'},
+  {_id: 15, profilePicture: 'person/1.png', username: 'Snooker'},
 ];
 
 export const Posts = [
   {
-    id: 1,
+    _id: 1,
     desc: '"The elevator to success is out of order. You\'ll have to use the stairs, one step at a time."',
     photo: 'post/1.jfif',
     date: '5 mins ago',
@@ -27,7 +27,7 @@ export const Posts = [
     comment: 9,
   },
   {
-    id: 2,
+    _id: 2,
     desc: "People often say that motivation doesn't last. Well, neither does bathing - that's why we recommend it daily.",
     photo: 'post/2.jpg',
     date: '6 mins ago',
@@ -36,7 +36,7 @@ export const Posts = [
     comment: 90,
   },
   {
-    id: 3,
+    _id: 3,
     desc: 'I always wanted to be somebody, but now I realise I should have been more specific.',
     photo: 'post/3.jfif',
     date: '20 mins ago',
@@ -45,7 +45,7 @@ export const Posts = [
     comment: 10,
   },
   {
-    id: 4,
+    _id: 4,
     desc: "I am so clever that sometimes I don't understand a single word of what I am saying",
     photo: 'post/4.jfif',
     date: '1 mins ago',
@@ -54,7 +54,7 @@ export const Posts = [
     comment: 10,
   },
   {
-    id: 5,
+    _id: 5,
     desc: 'People say nothing is impossible, but I do nothing every day.',
     photo: 'post/5.jfif',
     date: '1 mins ago',
@@ -63,7 +63,7 @@ export const Posts = [
     comment: 13,
   },
   {
-    id: 6,
+    _id: 6,
     desc: 'Life is like a sewer... what you get out of it depends on what you put into it',
     photo: 'post/6.jfif',
     date: 'just now',
@@ -72,7 +72,7 @@ export const Posts = [
     comment: 3,
   },
   {
-    id: 7,
+    _id: 7,
     desc: 'Change is not a four letter word... but often your reaction to it is!',
     photo: 'post/4.jfif',
     date: 'just now',
@@ -81,7 +81,7 @@ export const Posts = [
     comment: 40,
   },
   {
-    id: 8,
+    _id: 8,
     desc: 'If you think you are too small to make a difference, try sleeping with a mosquito',
     photo: 'post/1.jfif',
     date: '1 hour ago',
@@ -90,7 +90,7 @@ export const Posts = [
     comment: 1,
   },
   {
-    id: 9,
+    _id: 9,
     desc: 'Bad decisions make good stories.',
     photo: 'post/2.jpg',
     date: '2 hours ago',
@@ -99,7 +99,7 @@ export const Posts = [
     comment: 11,
   },
   {
-    id: 10,
+    _id: 10,
     desc: "I'll probably never fully become what I wanted to be when I grew up, but that's probably because I wanted to be a ninja princess.",
     photo: 'post/3.jfif',
     date: '2 hours ago',
@@ -108,7 +108,7 @@ export const Posts = [
     comment: 10,
   },
   {
-    id: 11,
+    _id: 11,
     desc: 'When life gives you lemons, squirt someone in the eye.',
     photo: 'post/4.jfif',
     date: '40 mins ago',
@@ -117,7 +117,7 @@ export const Posts = [
     comment: 3,
   },
   {
-    id: 12,
+    _id: 12,
     desc: 'A clear conscience is a sure sign of a bad memory.',
     photo: 'post/2.jfif',
     date: '1 hour ago',
@@ -126,7 +126,7 @@ export const Posts = [
     comment: 10,
   },
   {
-    id: 13,
+    _id: 13,
     desc: "I didn't fail the test. I just found 100 ways to do it wrong",
     photo: 'post/3.jfif',
     date: '2 hours ago',
@@ -135,7 +135,7 @@ export const Posts = [
     comment: 4,
   },
   {
-    id: 14,
+    _id: 14,
     desc: "I used to think I was indecisive, but now I'm not so sure",
     photo: 'post/6.jfif',
     date: '4 hour ago',
@@ -144,7 +144,7 @@ export const Posts = [
     comment: 2,
   },
   {
-    id: 15,
+    _id: 15,
     desc: 'Think like a proton. Always positive.',
     photo: 'post/2.jpg',
     date: '1 day ago',
