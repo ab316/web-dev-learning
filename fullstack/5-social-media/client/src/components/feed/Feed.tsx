@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {FC, useEffect, useState} from 'react';
-import {IPost} from '../../interfaces';
+import {IPost} from 'interfaces/post';
 import Post from '../post/Post';
 import Share from '../share/Share';
 import './feed.css';

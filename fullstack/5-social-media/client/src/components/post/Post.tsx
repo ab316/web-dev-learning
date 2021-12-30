@@ -1,7 +1,8 @@
 import {FC, useEffect, useState} from 'react';
 import {MoreVert} from '@material-ui/icons';
 import dayjs from 'dayjs';
-import {IPost, IUser} from '../../interfaces';
+import {IPost} from 'interfaces/post';
+import {IUser} from 'interfaces/user';
 import './post.css';
 import axios from 'axios';
 import {Link} from 'react-router-dom';

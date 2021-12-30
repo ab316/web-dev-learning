@@ -1,5 +1,5 @@
 import {FC} from 'react';
-import {IUser} from '../../interfaces';
+import {IUser} from 'interfaces/user';
 import './friend.css';
 
 interface IProps {

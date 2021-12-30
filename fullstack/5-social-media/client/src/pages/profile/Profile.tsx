@@ -1,12 +1,14 @@
 import axios from 'axios';
 import {useEffect, useState} from 'react';
 import {useParams} from 'react-router';
-import Feed from '../../components/feed/Feed';
-import Rightbar from '../../components/rightbar/Rightbar';
-import Sidebar from '../../components/sidebar/Sidebar';
-import Topbar from '../../components/topbar/Topbar';
-import {IUser} from '../../interfaces';
+import Feed from 'components/feed/Feed';
+import Rightbar from 'components/rightbar/Rightbar';
+import Sidebar from 'components/sidebar/Sidebar';
+import Topbar from 'components/topbar/Topbar';
+import {IUser} from 'interfaces/user';
 import './profile.css';
+
+// import useAuth from 'context/auth/AuthContext';
 
 const Profile = () => {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;

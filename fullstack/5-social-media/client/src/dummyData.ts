@@ -1,4 +1,4 @@
-import {IUser} from './interfaces';
+import {IUser} from 'interfaces/user';
 
 export const Users: IUser[] = [
   {_id: 1, profilePicture: 'person/1.png', username: 'Mojo', followers: [], followings: []},
