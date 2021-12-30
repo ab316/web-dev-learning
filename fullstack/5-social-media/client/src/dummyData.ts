@@ -1,19 +1,21 @@
-export const Users = [
-  {_id: 1, profilePicture: 'person/1.png', username: 'Mojo'},
-  {_id: 2, profilePicture: 'person/2.png', username: 'Persnickety'},
-  {_id: 3, profilePicture: 'person/3.png', username: 'Fisticuffs'},
-  {_id: 4, profilePicture: 'person/4.png', username: 'Doldrums'},
-  {_id: 5, profilePicture: 'person/5.png', username: 'Gossamer'},
-  {_id: 6, profilePicture: 'person/6.png', username: 'Gobbledygook'},
-  {_id: 7, profilePicture: 'person/7.svg', username: 'Flummox'},
-  {_id: 8, profilePicture: 'person/1.png', username: 'Shrubbery'},
-  {_id: 9, profilePicture: 'person/2.png', username: 'Blackguard'},
-  {_id: 10, profilePicture: 'person/3.png', username: 'Highfalutin'},
-  {_id: 11, profilePicture: 'person/4.png', username: 'Daedal'},
-  {_id: 12, profilePicture: 'person/5.png', username: 'Aplomb'},
-  {_id: 13, profilePicture: 'person/6.png', username: 'Gooseflesh'},
-  {_id: 14, profilePicture: 'person/7.svg', username: 'Bumbershoot'},
-  {_id: 15, profilePicture: 'person/1.png', username: 'Snooker'},
+import {IUser} from './interfaces';
+
+export const Users: IUser[] = [
+  {_id: 1, profilePicture: 'person/1.png', username: 'Mojo', followers: [], followings: []},
+  {_id: 2, profilePicture: 'person/2.png', username: 'Persnickety', followers: [], followings: []},
+  {_id: 3, profilePicture: 'person/3.png', username: 'Fisticuffs', followers: [], followings: []},
+  {_id: 4, profilePicture: 'person/4.png', username: 'Doldrums', followers: [], followings: []},
+  {_id: 5, profilePicture: 'person/5.png', username: 'Gossamer', followers: [], followings: []},
+  {_id: 6, profilePicture: 'person/6.png', username: 'Gobbledygook', followers: [], followings: []},
+  {_id: 7, profilePicture: 'person/7.svg', username: 'Flummox', followers: [], followings: []},
+  {_id: 8, profilePicture: 'person/1.png', username: 'Shrubbery', followers: [], followings: []},
+  {_id: 9, profilePicture: 'person/2.png', username: 'Blackguard', followers: [], followings: []},
+  {_id: 10, profilePicture: 'person/3.png', username: 'Highfalutin', followers: [], followings: []},
+  {_id: 11, profilePicture: 'person/4.png', username: 'Daedal', followers: [], followings: []},
+  {_id: 12, profilePicture: 'person/5.png', username: 'Aplomb', followers: [], followings: []},
+  {_id: 13, profilePicture: 'person/6.png', username: 'Gooseflesh', followers: [], followings: []},
+  {_id: 14, profilePicture: 'person/7.svg', username: 'Bumbershoot', followers: [], followings: []},
+  {_id: 15, profilePicture: 'person/1.png', username: 'Snooker', followers: [], followings: []},
 ];
 
 export const Posts = [

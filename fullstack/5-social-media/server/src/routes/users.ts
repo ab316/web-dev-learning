@@ -1,14 +1,21 @@
 import {Router} from 'express';
 import bcrypt from 'bcrypt';
 
-import {AuthorizedRequest, EmptyAuthorizedRequest} from './interfaces';
+import {AuthorizedRequest, EmptyAuthorizedRequest, TypedQueryRequest} from './interfaces';
 import {User} from '../models';
 
 const router = Router();
 
-router.get('/:id', async (req, res, next) => {
+router.get('/', async (req: TypedQueryRequest<{userId: string; username: string}>, res, next) => {
   try {
-    const user = await User.findById(req.params.id);
+    const userId = req.query.userId;
+    const username = req.query.username;
+
+    if (!userId && !username) {
+      res.status(400).json({message: 'Provide either userId or username query parameter'});
+      return;
+    }
+    const user = userId ? await User.findById(userId) : await User.findOne({username: username});
     if (user) {
       const {createdAt: _createdAt, updatedAt: _updatedAt, ...other} = user.View();
       res.json(other);

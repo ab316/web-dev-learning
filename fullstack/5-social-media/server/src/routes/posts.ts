@@ -26,6 +26,20 @@ router.get('/timeline/:userId', async (req, res, next) => {
   }
 });
 
+// get user posts: All posts for the given user
+router.get('/profile/:username', async (req, res, next) => {
+  try {
+    const user = await User.findOne({username: req.params.username});
+    if (!user) {
+      return res.status(403).json({success: false, message: 'Invalid request'});
+    }
+    const postsArray = await Post.find({userId: user.id}).sort({createdAt: 'desc'});
+    return res.json(postsArray);
+  } catch (err) {
+    next(err);
+  }
+});
+
 // get
 router.get('/:id', async (req, res, next) => {
   try {

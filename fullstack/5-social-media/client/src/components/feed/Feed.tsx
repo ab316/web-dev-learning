@@ -1,21 +1,26 @@
 import axios from 'axios';
-import {useEffect, useState} from 'react';
+import {FC, useEffect, useState} from 'react';
 import {IPost} from '../../interfaces';
 import Post from '../post/Post';
 import Share from '../share/Share';
 import './feed.css';
 
-const Feed = () => {
+interface IProps {
+  username?: string;
+}
+
+const Feed: FC<IProps> = ({username}) => {
   const [posts, setPosts] = useState<Array<IPost>>([]);
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const res = await axios.get('posts/timeline/61ccc20ea12c6a628537eb95');
-      console.log(`Timeline posts for user 61ccc20ea12c6a628537eb95 fetched`, res.data);
+      const res = username
+        ? await axios.get(`/posts/profile/${username}`)
+        : await axios.get('/posts/timeline/61ccc20ea12c6a628537eb95');
       setPosts(res.data);
     };
     fetchPosts();
-  }, []);
+  }, [username]);
 
   return (
     <div className="feed">

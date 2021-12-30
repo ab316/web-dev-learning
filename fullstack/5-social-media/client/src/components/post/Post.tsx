@@ -4,6 +4,7 @@ import dayjs from 'dayjs';
 import {IPost, IUser} from '../../interfaces';
 import './post.css';
 import axios from 'axios';
+import {Link} from 'react-router-dom';
 
 interface IProps {
   post: IPost;
@@ -17,12 +18,14 @@ const Post: FC<IProps> = ({post}) => {
   const [user, setUser] = useState<IUser>({
     _id: 0,
     profilePicture: `${PF}defaultProfile.svg`,
-    username: 'MISSING',
+    username: '',
+    followers: [],
+    followings: [],
   });
 
   useEffect(() => {
     const fetchUser = async () => {
-      const res = await axios.get(`users/${post.userId}`);
+      const res = await axios.get(`/users/?userId=${post.userId}`);
       console.log(`user ${post.userId} fetched`, res.data);
       const user: IUser = res.data;
       if (!user.profilePicture || user.profilePicture.trim().length === 0) {
@@ -43,7 +46,9 @@ const Post: FC<IProps> = ({post}) => {
       <div className="postWrapper">
         <div className="postTop">
           <div className="postTopLeft">
-            <img src={user.profilePicture} alt="Person 1" className="postProfileImg" />
+            <Link to={`profile/${user.username}`}>
+              <img src={user.profilePicture} alt="Person 1" className="postProfileImg" />
+            </Link>
             <span className="postUsername">{user.username}</span>
             <span className="postDate">{dayjs(post.createdAt).fromNow()}</span>
           </div>

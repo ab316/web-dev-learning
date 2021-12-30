@@ -1,13 +1,13 @@
 import {FC} from 'react';
-import {Users} from '../../dummyData';
+import {IUser} from '../../interfaces';
 import Online from '../online/Online';
 import './rightbar.css';
 
 interface IProps {
-  profile?: boolean;
+  user?: IUser;
 }
 
-const rightbar: FC<IProps> = ({profile}) => {
+const rightbar: FC<IProps> = ({user}) => {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const HomeRightbar = () => {
     return (
@@ -20,11 +20,11 @@ const rightbar: FC<IProps> = ({profile}) => {
         </div>
 
         <img src={`${PF}ad.jpg`} alt="Ad" className="rightbarAd" />
-        <h4 className="rightbarTitle">Online Frields</h4>
+        <h4 className="rightbarTitle">Online Friends</h4>
         <ul className="rightbarFriendList">
-          {Users.map((u) => (
+          {/* {user.followers.map((u) => (
             <Online key={u._id} user={u} />
-          ))}
+          ))} */}
         </ul>
       </>
     );
@@ -32,23 +32,25 @@ const rightbar: FC<IProps> = ({profile}) => {
 
   const ProfileRightbar = () => {
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+    const relationshipStatuses = ['Single', 'Married', '-'];
+    const relationshipStatus = user?.relationshipStatus ? relationshipStatuses[user?.relationshipStatus - 1] : '-';
     return (
       <>
         <h4 className="rightbarTitle">My Information</h4>
         <div className="rightbarInfo">
           <div className="rightbarInfoItem">
             <span className="rightbarInfoKey">City:</span>
-            <span className="rightbarInfoValue">Gothenburg</span>
+            <span className="rightbarInfoValue">{user?.city}</span>
           </div>
 
           <div className="rightbarInfoItem">
             <span className="rightbarInfoKey">From:</span>
-            <span className="rightbarInfoValue">Lahore</span>
+            <span className="rightbarInfoValue">{user?.from}</span>
           </div>
 
           <div className="rightbarInfoItem">
             <span className="rightbarInfoKey">Relationship:</span>
-            <span className="rightbarInfoValue">Single</span>
+            <span className="rightbarInfoValue">{relationshipStatus}</span>
           </div>
         </div>
         <h4 className="rightbarTitle">My Friends</h4>
@@ -75,7 +77,7 @@ const rightbar: FC<IProps> = ({profile}) => {
   return (
     <div className="rightbar">
       <div className="rightbarWrapper"></div>
-      {profile ? <ProfileRightbar /> : <HomeRightbar />}
+      {user ? <ProfileRightbar /> : <HomeRightbar />}
     </div>
   );
 };

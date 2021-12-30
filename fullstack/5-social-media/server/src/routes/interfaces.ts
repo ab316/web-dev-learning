@@ -1,4 +1,5 @@
 import express from 'express';
+import * as core from 'express-serve-static-core';
 
 // type RequestWithoutParams<P> = Omit<express.Request, 'params'> & {params: P};
 
@@ -6,6 +7,8 @@ import express from 'express';
 export interface TypedRequest<B> extends express.Request {
   body: B;
 }
+
+export type TypedQueryRequest<Q> = express.Request<core.ParamsDictionary, any, any, Q>;
 
 export type AuthorizedRequest<B> = TypedRequest<{userId: string} & B>;
 
