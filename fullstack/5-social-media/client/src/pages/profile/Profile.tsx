@@ -17,8 +17,6 @@ const Profile = () => {
     _id: '',
     email: '',
     username: '',
-    profilePicture: `${PF}defaultProfile.svg`,
-    coverPicture: `${PF}defaultCover.jpg`,
     followings: [],
     followers: [],
   });
@@ -26,14 +24,6 @@ const Profile = () => {
   useEffect(() => {
     const fetchUser = async () => {
       const res = await axios.get(`/users/?username=${username}`);
-      const user: IUser = res.data;
-      if (!user.profilePicture || user.profilePicture.trim().length === 0) {
-        user.profilePicture = `${PF}defaultProfile.svg`;
-      }
-
-      if (!user.coverPicture || user.coverPicture.trim().length === 0) {
-        user.coverPicture = `${PF}defaultCover.jpg`;
-      }
       setUser(res.data);
     };
     fetchUser();
@@ -47,8 +37,12 @@ const Profile = () => {
         <div className="profileRight">
           <div className="profileRightTop">
             <div className="profileCover">
-              <img src={user.coverPicture} alt="Cover" className="profileCoverImg" />
-              <img src={user.profilePicture} alt="Profile" className="profileUserImg" />
+              <img src={`${PF}${user.coverPicture || 'defaultCover.jpg'}`} alt="Cover" className="profileCoverImg" />
+              <img
+                src={`${PF}${user.profilePicture || 'defaultProfile.svg'}`}
+                alt="Profile"
+                className="profileUserImg"
+              />
             </div>
             <div className="profileInfo">
               <h4 className="profileInfoName">{user.username}</h4>

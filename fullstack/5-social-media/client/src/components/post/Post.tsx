@@ -1,12 +1,12 @@
 import {FC, useEffect, useState} from 'react';
-import {MoreVert} from '@material-ui/icons';
+import {Link} from 'react-router-dom';
+import axios from 'axios';
 import dayjs from 'dayjs';
+import {MoreVert} from '@material-ui/icons';
 import {IPost} from 'interfaces/post';
 import {IUser} from 'interfaces/user';
-import './post.css';
-import axios from 'axios';
-import {Link} from 'react-router-dom';
 import useAuth from 'context/auth/AuthContext';
+import './post.css';
 
 interface IProps {
   post: IPost;
@@ -46,13 +46,13 @@ const Post: FC<IProps> = ({post}) => {
       const loggedUserId = loggedUser?._id as string;
       if (isLiked) {
         console.log('unliking');
-        axios.put(`posts/${post._id}/unlike`, {userId: loggedUserId});
+        axios.put(`/posts/${post._id}/unlike`, {userId: loggedUserId});
         post.likes = post.likes.splice(post.likes.indexOf(loggedUserId), 1);
         setIsLiked(false);
         setLike(like - 1);
       } else {
         console.log('liking');
-        axios.put(`posts/${post._id}/like`, {userId: loggedUserId});
+        axios.put(`/posts/${post._id}/like`, {userId: loggedUserId});
         post.likes.push(loggedUserId);
         setIsLiked(true);
         setLike(like + 1);
@@ -68,11 +68,7 @@ const Post: FC<IProps> = ({post}) => {
         <div className="postTop">
           <div className="postTopLeft">
             <Link to={`profile/${user.username}`}>
-              <img
-                src={`${PF}${user?.profilePicture || 'defaultProfile.svg'}`}
-                alt="Person 1"
-                className="postProfileImg"
-              />
+              <img src={`${PF}${user?.profilePicture || 'defaultProfile.svg'}`} alt="User" className="postProfileImg" />
             </Link>
             <span className="postUsername">{user.username}</span>
             <span className="postDate">{dayjs(post.createdAt).fromNow()}</span>
@@ -84,7 +80,7 @@ const Post: FC<IProps> = ({post}) => {
 
         <div className="postCenter">
           <span className="postText">{post?.desc}</span>
-          {post.img && <img src={`${PF}${post.img}`} alt="Mountains" className="postImg" />}
+          {post.img && <img src={`${PF}${post.img}`} alt="Post" className="postImg" />}
         </div>
 
         <div className="postBottom">
