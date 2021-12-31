@@ -6,6 +6,7 @@ import {IUser} from 'interfaces/user';
 import './post.css';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
+import useAuth from 'context/auth/AuthContext';
 
 interface IProps {
   post: IPost;
@@ -17,29 +18,48 @@ const Post: FC<IProps> = ({post}) => {
   const [like, setLike] = useState<number>(post.likes.length);
   const [isLiked, setIsLiked] = useState(false);
   const [user, setUser] = useState<IUser>({
-    _id: 0,
-    profilePicture: `${PF}defaultProfile.svg`,
+    _id: '0',
     username: '',
+    email: '',
     followers: [],
     followings: [],
   });
+
+  const {user: loggedUser} = useAuth();
 
   useEffect(() => {
     const fetchUser = async () => {
       const res = await axios.get(`/users/?userId=${post.userId}`);
       console.log(`user ${post.userId} fetched`, res.data);
-      const user: IUser = res.data;
-      if (!user.profilePicture || user.profilePicture.trim().length === 0) {
-        user.profilePicture = `${PF}defaultProfile.svg`;
-      }
       setUser(res.data);
     };
+
     fetchUser();
-  }, [post, PF]);
+  }, [post, PF, loggedUser]);
+
+  useEffect(() => {
+    if (loggedUser) setIsLiked(post.likes.includes(loggedUser?._id));
+  }, [post, loggedUser]);
 
   const likeHandler = () => {
-    setLike(isLiked ? like - 1 : like + 1);
-    setIsLiked(!isLiked);
+    try {
+      const loggedUserId = loggedUser?._id as string;
+      if (isLiked) {
+        console.log('unliking');
+        axios.put(`posts/${post._id}/unlike`, {userId: loggedUserId});
+        post.likes = post.likes.splice(post.likes.indexOf(loggedUserId), 1);
+        setIsLiked(false);
+        setLike(like - 1);
+      } else {
+        console.log('liking');
+        axios.put(`posts/${post._id}/like`, {userId: loggedUserId});
+        post.likes.push(loggedUserId);
+        setIsLiked(true);
+        setLike(like + 1);
+      }
+    } catch (err) {
+      console.error('Like error', err);
+    }
   };
 
   return (
@@ -48,7 +68,11 @@ const Post: FC<IProps> = ({post}) => {
         <div className="postTop">
           <div className="postTopLeft">
             <Link to={`profile/${user.username}`}>
-              <img src={user.profilePicture} alt="Person 1" className="postProfileImg" />
+              <img
+                src={`${PF}${user?.profilePicture || 'defaultProfile.svg'}`}
+                alt="Person 1"
+                className="postProfileImg"
+              />
             </Link>
             <span className="postUsername">{user.username}</span>
             <span className="postDate">{dayjs(post.createdAt).fromNow()}</span>

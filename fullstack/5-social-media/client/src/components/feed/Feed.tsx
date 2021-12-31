@@ -4,6 +4,7 @@ import {IPost} from 'interfaces/post';
 import Post from '../post/Post';
 import Share from '../share/Share';
 import './feed.css';
+import useAuth from 'context/auth/AuthContext';
 
 interface IProps {
   username?: string;
@@ -11,16 +12,17 @@ interface IProps {
 
 const Feed: FC<IProps> = ({username}) => {
   const [posts, setPosts] = useState<Array<IPost>>([]);
+  const {user} = useAuth();
 
   useEffect(() => {
     const fetchPosts = async () => {
       const res = username
         ? await axios.get(`/posts/profile/${username}`)
-        : await axios.get('/posts/timeline/61ccc20ea12c6a628537eb95');
+        : await axios.get(`/posts/timeline/${user?._id}`);
       setPosts(res.data);
     };
     fetchPosts();
-  }, [username]);
+  }, [username, user]);
 
   return (
     <div className="feed">

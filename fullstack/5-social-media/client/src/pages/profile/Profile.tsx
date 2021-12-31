@@ -14,10 +14,11 @@ const Profile = () => {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const username = useParams().username;
   const [user, setUser] = useState<IUser>({
-    _id: 0,
+    _id: '',
+    email: '',
+    username: '',
     profilePicture: `${PF}defaultProfile.svg`,
     coverPicture: `${PF}defaultCover.jpg`,
-    username: '',
     followings: [],
     followers: [],
   });
