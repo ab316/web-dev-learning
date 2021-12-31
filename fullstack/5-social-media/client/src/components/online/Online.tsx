@@ -1,20 +1,20 @@
 import {FC} from 'react';
-import {IUser} from 'interfaces/user';
+import {IFriend} from 'interfaces/user';
 import './online.css';
 
 interface IProps {
-  user: IUser;
+  friend: IFriend;
 }
 
-const Online: FC<IProps> = ({user}) => {
+const Online: FC<IProps> = ({friend}) => {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   return (
     <li className="rightbarFriend">
       <div className="rightbarProfileImgContainer">
-        <img src={`${PF}${user.profilePicture}`} alt="person" className="rightbarProfileImg" />
+        <img src={`${PF}${friend.profilePicture}`} alt="Friend" className="rightbarProfileImg" />
         <span className="rightbarOnline"></span>
       </div>
-      <span className="rightbarUsername">{user.username}</span>
+      <span className="rightbarUsername">{friend.username}</span>
     </li>
   );
 };

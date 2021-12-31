@@ -20,7 +20,28 @@ router.get('/', async (req: TypedQueryRequest<{userId: string; username: string}
       const {createdAt: _createdAt, updatedAt: _updatedAt, ...other} = user.View();
       res.json(other);
     } else {
-      res.sendStatus(404);
+      res.status(404).json({success: false, message: 'User not found'});
+    }
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.get('/friends/:userId', async (req, res, next) => {
+  try {
+    const user = await User.findById(req.params.userId);
+    if (user) {
+      const friends = await Promise.all(user.followings.map((friendId) => User.findById(friendId)));
+      const friendList = friends
+        .filter((f) => f != null)
+        .map((friend) => ({
+          username: friend?.username,
+          _id: friend?.id,
+          profilePicture: friend?.profilePicture,
+        }));
+      res.json(friendList);
+    } else {
+      res.status(404).json({success: false, message: 'User not found'});
     }
   } catch (err) {
     next(err);

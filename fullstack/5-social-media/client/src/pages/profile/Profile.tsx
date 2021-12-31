@@ -13,13 +13,7 @@ import './profile.css';
 const Profile = () => {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const username = useParams().username;
-  const [user, setUser] = useState<IUser>({
-    _id: '',
-    email: '',
-    username: '',
-    followings: [],
-    followers: [],
-  });
+  const [user, setUser] = useState<IUser>();
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -28,6 +22,10 @@ const Profile = () => {
     };
     fetchUser();
   }, [PF, username]);
+
+  if (!user) {
+    return <></>;
+  }
 
   return (
     <>

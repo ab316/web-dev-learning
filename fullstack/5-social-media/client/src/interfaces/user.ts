@@ -22,3 +22,5 @@ export interface IRegisterUserRequest {
   email: string;
   password: string;
 }
+
+export type IFriend = Pick<IUser, '_id' | 'username' | 'profilePicture'>;

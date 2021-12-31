@@ -1,14 +1,31 @@
-import {FC} from 'react';
-import {IUser} from 'interfaces/user';
+import {FC, useEffect, useState} from 'react';
+import {IFriend, IUser} from 'interfaces/user';
 import Online from '../online/Online';
 import './rightbar.css';
+import axios from 'axios';
+import {Link} from 'react-router-dom';
 
 interface IProps {
   user?: IUser;
 }
 
-const rightbar: FC<IProps> = ({user}) => {
+const RightBar: FC<IProps> = ({user}) => {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+  const [friends, setFriends] = useState<Array<IFriend>>([]);
+
+  useEffect(() => {
+    const getFriends = async () => {
+      try {
+        const friendList = await axios.get(`/users/friends/${user?._id}`);
+        setFriends(friendList.data);
+      } catch (err) {
+        console.error('Fetch friends error', err);
+      }
+    };
+
+    if (user) getFriends();
+  }, [user]);
+
   const HomeRightbar = () => {
     return (
       <>
@@ -53,22 +70,16 @@ const rightbar: FC<IProps> = ({user}) => {
             <span className="rightbarInfoValue">{relationshipStatus}</span>
           </div>
         </div>
-        <h4 className="rightbarTitle">My Friends</h4>
+        <h4 className="rightbarTitle">Friends</h4>
         <div className="rightbarFollowings">
-          <div className="rightbarFollowing">
-            <img src={`${PF}person/2.png`} alt="Following" className="rightbarFollowingImg" />
-            <span className="rightbarFollowingName">Some guy</span>
-          </div>
-
-          <div className="rightbarFollowing">
-            <img src={`${PF}person/3.png`} alt="Following" className="rightbarFollowingImg" />
-            <span className="rightbarFollowingName">Robot guy</span>
-          </div>
-
-          <div className="rightbarFollowing">
-            <img src={`${PF}person/4.png`} alt="Following" className="rightbarFollowingImg" />
-            <span className="rightbarFollowingName">Funny guy</span>
-          </div>
+          {friends.map((f) => (
+            <Link to={`/profile/${f.username}`} style={{textDecoration: 'none'}}>
+              <div key={f._id} className="rightbarFollowing">
+                <img src={`${PF}${f.profilePicture}`} alt="Following" className="rightbarFollowingImg" />
+                <span className="rightbarFollowingName">{f.username}</span>
+              </div>
+            </Link>
+          ))}
         </div>
       </>
     );
@@ -82,4 +93,4 @@ const rightbar: FC<IProps> = ({user}) => {
   );
 };
 
-export default rightbar;
+export default RightBar;
