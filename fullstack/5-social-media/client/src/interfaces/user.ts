@@ -10,3 +10,8 @@ export interface IUser {
   from?: string;
   relationshipStatus?: number;
 }
+
+export interface IUserCredentials {
+  email: string;
+  password: string;
+}
