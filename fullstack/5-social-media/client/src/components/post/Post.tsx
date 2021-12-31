@@ -30,7 +30,6 @@ const Post: FC<IProps> = ({post}) => {
   useEffect(() => {
     const fetchUser = async () => {
       const res = await axios.get(`/users/?userId=${post.userId}`);
-      console.log(`user ${post.userId} fetched`, res.data);
       setUser(res.data);
     };
 

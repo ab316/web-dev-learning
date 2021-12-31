@@ -25,6 +25,30 @@ export default function authReducer(state: IAuthState, action: IAuthAction): IAu
         error: action.payload as Error,
       };
 
+    case ACTION_TYPE.FOLLOW:
+      if (state.user) {
+        const following = action.payload as string;
+        const newFollowings = [...state.user?.followings, following];
+        return {
+          ...state,
+          user: {...state.user, followings: newFollowings},
+        };
+      } else {
+        return state;
+      }
+
+    case ACTION_TYPE.UNFOLLOW:
+      if (state.user) {
+        const following = action.payload as string;
+        const newFollowings = state.user.followings.filter((f) => f !== following);
+        return {
+          ...state,
+          user: {...state.user, followings: newFollowings},
+        };
+      } else {
+        return state;
+      }
+
     default:
       return state;
   }
