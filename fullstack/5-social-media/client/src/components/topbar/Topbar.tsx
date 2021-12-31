@@ -1,9 +1,12 @@
 import {Link} from 'react-router-dom';
 import {Search, Person, Chat, Notifications} from '@material-ui/icons';
 import './topbar.css';
+import useAuth from 'context/auth/AuthContext';
 
 const Topbar = () => {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+  const {user} = useAuth();
+
   return (
     <div className="topbarContainer">
       <div className="topbarLeft">
@@ -41,7 +44,9 @@ const Topbar = () => {
           </div>
         </div>
 
-        <img src={`${PF}person/1.png`} alt="Profile" className="topbarImage" />
+        <Link to={`/profile/${user?.username}`}>
+          <img src={`${PF}${user?.profilePicture || 'defaultProfile.svg'}`} alt="Profile" className="topbarImage" />
+        </Link>
       </div>
     </div>
   );

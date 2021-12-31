@@ -15,3 +15,9 @@ export interface IUserCredentials {
   email: string;
   password: string;
 }
+
+export interface IRegisterUserRequest {
+  username: string;
+  email: string;
+  password: string;
+}

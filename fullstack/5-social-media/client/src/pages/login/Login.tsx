@@ -11,7 +11,6 @@ const Login = () => {
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
-    console.log('Submit clicked');
     login(
       {
         email: email.current?.value as string,
@@ -20,10 +19,6 @@ const Login = () => {
       dispatch,
     );
   };
-
-  console.log(`isLoading ${isLoading}`);
-  console.log('user', user);
-  console.log(`error ${error}`);
 
   return (
     <div className="login">

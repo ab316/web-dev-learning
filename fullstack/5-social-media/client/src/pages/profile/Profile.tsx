@@ -16,6 +16,7 @@ const Profile = () => {
   const [user, setUser] = useState<IUser>({
     _id: 0,
     profilePicture: `${PF}defaultProfile.svg`,
+    coverPicture: `${PF}defaultCover.jpg`,
     username: '',
     followings: [],
     followers: [],
