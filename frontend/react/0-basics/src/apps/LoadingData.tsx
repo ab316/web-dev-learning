@@ -1,5 +1,6 @@
 import GithubUser from 'components/loadingData/GithubUser';
 import NonVirtualizedList from 'components/loadingData/VirtualizedList';
+import WaterfallGithubUser from 'components/loadingData/WaterfallGithubUser';
 
 const LoadingData = () => {
   return (
@@ -10,7 +11,7 @@ const LoadingData = () => {
       <NonVirtualizedList />
 
       <h2>Github User</h2>
-      <GithubUser />
+      <WaterfallGithubUser />
     </article>
   );
 };

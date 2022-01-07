@@ -3,8 +3,8 @@ import {useFetch} from 'hooks';
 interface Props<T> {
   uri: string;
   loadingFallback?: JSX.Element;
-  renderSuccess: ({data}: {data: T}) => JSX.Element;
-  renderError?: (error: Error) => JSX.Element;
+  renderSuccess: ({data}: {data: T}) => JSX.Element | null;
+  renderError?: (error: Error) => JSX.Element | null;
 }
 
 export const Fetch = <T,>({
