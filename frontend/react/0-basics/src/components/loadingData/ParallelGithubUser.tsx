@@ -3,6 +3,11 @@ import {FC, useCallback, useEffect, useState} from 'react';
 import ReactMarkdown from 'react-markdown';
 import {Fetch} from './Fetch';
 
+const AUTH_HEADERS = {
+  // Generate a Personal Access Token in Github and store it in a .env file as a variable
+  Authorization: `token ${process.env['REACT_APP_GITHUB_PAT']}`,
+};
+
 // This version of the Github User component uses parallel requests. All requests for the data are sent
 // at once. It requires structuring the components in a different way. Instead of nesting the request making components
 // they are moved at the same level.
@@ -11,11 +16,20 @@ const ParallelGithubUser = () => {
   const [login, setLogin] = useState('');
   const [repoName, setRepoName] = useState('');
 
+  const handleSearch = () => {
+    if (userName.value) {
+      setLogin(userName.value);
+    } else {
+      setLogin('');
+    }
+    setRepoName('');
+  };
+
   return (
     <>
       <div>
         <input type="text" placeholder="Github username" {...userName} />
-        <button onClick={() => setLogin(userName.value)}>Search</button>
+        <button onClick={handleSearch}>Search</button>
       </div>
       {login && <User login={login} />}
       {login && <UserRepositories login={login} onSelect={setRepoName} selected={repoName} />}
@@ -26,7 +40,7 @@ const ParallelGithubUser = () => {
 
 // Using Fetch component abstraction along with Repositories renders using custom iterator hook
 const User: FC<{login: string}> = ({login}) => {
-  return <Fetch uri={`https://api.github.com/users/${login}`} renderSuccess={UserDetail} />;
+  return <Fetch uri={`https://api.github.com/users/${login}`} headers={AUTH_HEADERS} renderSuccess={UserDetail} />;
 };
 
 const UserDetail = ({data}: {data: Record<string, string>}) => {
@@ -56,7 +70,7 @@ const UserRepositories = ({
     <>{Array.isArray(data) && <RepoMenu repositories={data} selected={selected} onSelect={onSelect} />}</>
   );
 
-  return <Fetch uri={`https://api.github.com/users/${login}/repos`} renderSuccess={render} />;
+  return <Fetch uri={`https://api.github.com/users/${login}/repos`} headers={AUTH_HEADERS} renderSuccess={render} />;
 };
 
 const RepoMenu = ({
@@ -96,7 +110,7 @@ const RepositoryReadme = ({login, repoName}: {login: string; repoName: string}) 
   const loadReadme = useCallback(async (login: string, repoName: string) => {
     setLoading(true);
     const uri = `https://api.github.com/repos/${login}/${repoName}/readme`;
-    const {download_url} = await (await fetch(uri)).json();
+    const {download_url} = await (await fetch(uri, {headers: AUTH_HEADERS})).json();
     if (download_url) {
       const markdown = await (await fetch(download_url)).text();
       setMarkdown(markdown);

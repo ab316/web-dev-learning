@@ -6,7 +6,7 @@ export const useInput = (initialValue: string) => {
   return [{value, onChange: onChange}, () => setValue(initialValue)] as const;
 };
 
-export function useFetch<T>(uri: string) {
+export function useFetch<T>(uri: string, headers?: Record<string, string>) {
   const [data, setData] = useState<T | null>(null);
   const [error, setError] = useState<Error>();
   const [loading, setLoading] = useState(true);
@@ -15,7 +15,7 @@ export function useFetch<T>(uri: string) {
     if (!uri) return;
     setLoading(true);
 
-    fetch(uri)
+    fetch(uri, {headers: headers})
       .then((res) => res.json())
       .then(setData)
       .then(() => setLoading(false))
