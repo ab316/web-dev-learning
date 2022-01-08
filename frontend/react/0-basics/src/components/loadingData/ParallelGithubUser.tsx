@@ -1,4 +1,4 @@
-import {useInput, useIterator} from 'hooks';
+import {useInput, useIterator, useMountedRef} from 'hooks';
 import {FC, useCallback, useEffect, useState} from 'react';
 import ReactMarkdown from 'react-markdown';
 import {Fetch} from './Fetch';
@@ -106,11 +106,15 @@ const RepositoryReadme = ({login, repoName}: {login: string; repoName: string}) 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<Error>();
   const [markdown, setMarkdown] = useState('');
+  const mounted = useMountedRef();
 
   const loadReadme = useCallback(async (login: string, repoName: string) => {
     setLoading(true);
     const uri = `https://api.github.com/repos/${login}/${repoName}/readme`;
     const {download_url} = await (await fetch(uri, {headers: AUTH_HEADERS})).json();
+    // We come here after the request finishes. The component could have been dismounted
+    // by then (on a slow net the user makes a new search with an empty string).
+    if (!mounted.current) return;
     if (download_url) {
       const markdown = await (await fetch(download_url)).text();
       setMarkdown(markdown);
