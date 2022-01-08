@@ -7,18 +7,19 @@ import {Fetch} from './Fetch';
 // at once. It requires structuring the components in a different way. Instead of nesting the request making components
 // they are moved at the same level.
 const ParallelGithubUser = () => {
-  const [userName, reset] = useInput('ab316');
-  const [login, setLogin] = useState('ab316');
-  const [repoName, setRepoName] = useState('design-resources-for-developers');
+  const [userName, reset] = useInput('');
+  const [login, setLogin] = useState('');
+  const [repoName, setRepoName] = useState('');
+
   return (
     <>
       <div>
         <input type="text" placeholder="Github username" {...userName} />
         <button onClick={() => setLogin(userName.value)}>Search</button>
       </div>
-      <User login={login} />
-      <UserRepositories login={login} onSelect={setRepoName} selected={repoName} />
-      <RepositoryReadme login={login} repoName={repoName} />
+      {login && <User login={login} />}
+      {login && <UserRepositories login={login} onSelect={setRepoName} selected={repoName} />}
+      {login && repoName && <RepositoryReadme login={login} repoName={repoName} />}
     </>
   );
 };
@@ -52,18 +53,17 @@ const UserRepositories = ({
   onSelect?: (repoName: string) => void;
 }) => {
   const render = ({data}: {data: IRepo[]}) => (
-    <RepoMenu login={login} repositories={data} selected={selected} onSelect={onSelect} />
+    <>{Array.isArray(data) && <RepoMenu repositories={data} selected={selected} onSelect={onSelect} />}</>
   );
+
   return <Fetch uri={`https://api.github.com/users/${login}/repos`} renderSuccess={render} />;
 };
 
 const RepoMenu = ({
-  login,
   repositories,
   selected,
   onSelect = (f) => f,
 }: {
-  login: string;
   repositories: IRepo[];
   selected?: string;
   onSelect?: (repoName: string) => void;
@@ -78,8 +78,6 @@ const RepoMenu = ({
     if (!repo || !repo.name) return;
     onSelect(repo.name);
   }, [repo]);
-
-  if (!login && !repo) return null;
 
   return (
     <div style={{display: 'flex', width: '25%', minWidth: '400px', justifyContent: 'space-between'}}>
