@@ -3,8 +3,7 @@ import Container from 'components/utils/Container';
 import Navbar from './Navbar';
 import Rightbar from './Rightbar';
 
-const StyledTopbar = styled.div`
-  /* height: 4rem; */
+const StyledNav = styled.nav`
   background-color: #333;
   color: #fff;
   display: flex;
@@ -27,7 +26,7 @@ const StyledLogo = styled.div`
 
 const Topbar = () => {
   return (
-    <StyledTopbar>
+    <StyledNav>
       <Container>
         <StyledFlex>
           <StyledLogo>
@@ -37,7 +36,7 @@ const Topbar = () => {
           <Rightbar />
         </StyledFlex>
       </Container>
-    </StyledTopbar>
+    </StyledNav>
   );
 };
 

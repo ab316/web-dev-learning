@@ -1,16 +1,13 @@
-import styled from 'styled-components';
+import BottomBar from './BottomBar';
 
 import Topbar from './topbar/Topbar';
 
-const StyledHeader = styled.div`
-  height: 8rem;
-`;
-
 const Header = () => {
   return (
-    <StyledHeader>
+    <header>
       <Topbar />
-    </StyledHeader>
+      <BottomBar />
+    </header>
   );
 };
 

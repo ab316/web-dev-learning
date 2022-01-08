@@ -10,7 +10,8 @@ const StyledNavbar = styled.ul`
 
 const StyledListItem = styled.li`
   cursor: pointer;
-  font-size: 0.95rem;
+  box-sizing: border-box;
+  font-size: 1rem;
   padding: 1.5rem 1rem 1.5rem 1rem;
   &:hover {
     color: #eee;
