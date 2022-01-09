@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const StyledNavbar = styled.ul`
+const StyledList = styled.ul`
   list-style: none;
   color: #aaa;
   display: flex;
@@ -21,11 +21,11 @@ const StyledListItem = styled.li`
 const Navbar = () => {
   const items = ['Time Report', 'Projects', 'Assignments', 'My Pages', 'Global Pages', 'IT Support'];
   return (
-    <StyledNavbar>
+    <StyledList>
       {items.map((v) => (
         <StyledListItem key={v}>{v}</StyledListItem>
       ))}
-    </StyledNavbar>
+    </StyledList>
   );
 };
 

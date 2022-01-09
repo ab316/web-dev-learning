@@ -1,0 +1,32 @@
+p {
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+}
+
+.shareName {
+  font-weight: 500;
+}
+
+.leftSection {
+  border-right: 1px solid rgba(100, 100, 100, 0.4);
+  padding-right: 5rem;
+  padding-bottom: 2rem;
+}
+
+.leftSection div.fieldsGroup {
+  margin-top: 2rem;
+}
+
+.rightSection {
+  padding-left: 3rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 5rem;
+}
+
+.rightSection div p {
+  text-transform: uppercase;
+  color: #555;
+  font-weight: 300;
+}

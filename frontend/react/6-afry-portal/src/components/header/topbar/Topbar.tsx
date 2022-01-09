@@ -6,9 +6,6 @@ import Rightbar from './Rightbar';
 const StyledNav = styled.nav`
   background-color: #333;
   color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `;
 
 const StyledFlex = styled.div`
