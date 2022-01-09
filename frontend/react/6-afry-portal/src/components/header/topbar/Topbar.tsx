@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Container from 'components/utils/Container';
+import {Container} from 'components/Common.styled';
 import Navbar from './Navbar';
 import Rightbar from './Rightbar';
 

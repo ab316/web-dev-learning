@@ -1,5 +1,5 @@
-import Container from 'components/utils/Container';
 import styled from 'styled-components';
+import {Container} from 'components/Common.styled';
 import './footer.css';
 
 const StyledFooter = styled.footer`
