@@ -5,31 +5,34 @@ const StyledNavbar = styled.ul`
   color: #eee;
   display: flex;
   flex-direction: row;
-`;
 
-const StyledListItem = styled.li`
-  cursor: pointer;
-  padding: 1rem 1rem 1rem 1rem;
+  li {
+    cursor: pointer;
+    padding: 1rem 1rem 1rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 `;
 
 const Rightbar = () => {
   return (
     <StyledNavbar>
-      <StyledListItem>
-        <i className="fas fa-search fa-2x"></i>
-      </StyledListItem>
+      <li>
+        <img src="/images/search.svg" alt="Search" />
+      </li>
 
-      <StyledListItem>
-        <i className="fas fa-border-none fa-2x"></i>
-      </StyledListItem>
+      <li>
+        <img src="/images/launcher.svg" alt="Launcher" />
+      </li>
 
-      <StyledListItem>
-        <i className="far fa-bell fa-2x"></i>
-      </StyledListItem>
+      <li>
+        <img src="/images/bell.svg" alt="Bell" />
+      </li>
 
-      <StyledListItem>
+      <li>
         <i className="fas fa-user fa-2x"></i>
-      </StyledListItem>
+      </li>
     </StyledNavbar>
   );
 };
