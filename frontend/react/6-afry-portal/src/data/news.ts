@@ -1,4 +1,4 @@
-import {INews} from 'interfaces/news';
+import {IBanner, INews} from 'interfaces/news';
 
 export const employeeNews: INews[] = [
   {
@@ -47,3 +47,8 @@ export const employeeNews: INews[] = [
 ];
 
 export const globalNews = [];
+
+export const banners: IBanner[] = [
+  {image: '/images/banner-1.jpg', url: 'http://localhost:3000'},
+  {image: '/images/banner-2.jpg', url: 'http://localhost:3000'},
+];

@@ -12,3 +12,8 @@ export interface INews {
   createdAt: Date;
   updatedAt: Date;
 }
+
+export interface IBanner {
+  image: string;
+  url: string;
+}

@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import {Main} from 'components/Common.styled';
 import EmployeeNewsNav from 'components/employeeNewsNav/EmployeeNewsNav';
 import EmployeeNewsFeed from 'components/employeeNewsFeed/EmployeeNewsFeed';
+import EmployeeAside from 'components/employeeAside/EmployeeAside';
 
 const StyledFlex = styled.div`
   display: flex;
@@ -23,6 +24,7 @@ const Home = () => {
           <EmployeeNewsNav />
           <EmployeeNewsFeed />
         </StyledNewsDiv>
+        <EmployeeAside />
       </StyledFlex>
     </Main>
   );

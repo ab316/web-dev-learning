@@ -3,7 +3,7 @@ import dayjs from 'dayjs';
 import {INews} from 'interfaces/news';
 
 const StyledArticle = styled.article`
-  padding: 1rem 0;
+  margin-bottom: 3rem;
   display: flex;
   flex-direction: row;
   align-content: center;
@@ -81,23 +81,25 @@ const StyledArticle = styled.article`
 
 const NewsCard = ({data}: {data: INews}) => {
   return (
-    <StyledArticle>
-      <div className="news-image">
-        <img src={data.image} alt="Illustration" />
-      </div>
-      <div className="right-flex">
-        {data.category && <h4>{data.category}</h4>}
-        <h2>{data.title}</h2>
-        <h3>{data.subtitle}</h3>
-        <div className="meta">
-          <span>{dayjs(data.createdAt).format('MMMM D')}</span>
-          <button>
-            <img src="/images/thumbs-up.svg" alt="Thumbs Up" />
-            <span>{data.likes}</span>
-          </button>
+    <a href={`/articles/${data.id}`}>
+      <StyledArticle>
+        <div className="news-image">
+          <img src={data.image} alt="Illustration" />
         </div>
-      </div>
-    </StyledArticle>
+        <div className="right-flex">
+          {data.category && <h4>{data.category}</h4>}
+          <h2>{data.title}</h2>
+          <h3>{data.subtitle}</h3>
+          <div className="meta">
+            <span>{dayjs(data.createdAt).format('MMMM D')}</span>
+            <button>
+              <img src="/images/thumbs-up.svg" alt="Thumbs Up" />
+              <span>{data.likes}</span>
+            </button>
+          </div>
+        </div>
+      </StyledArticle>
+    </a>
   );
 };
 
