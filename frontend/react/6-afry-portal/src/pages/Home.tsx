@@ -9,14 +9,20 @@ const StyledFlex = styled.div`
   width: 100%;
 `;
 
+const StyledNewsDiv = styled.div`
+  width: 100%;
+  flex: 7;
+  margin-right: 2rem;
+`;
+
 const Home = () => {
   return (
     <Main>
       <StyledFlex>
-        <div style={{width: '100%', flex: 8}}>
+        <StyledNewsDiv>
           <EmployeeNewsNav />
           <EmployeeNewsFeed />
-        </div>
+        </StyledNewsDiv>
       </StyledFlex>
     </Main>
   );

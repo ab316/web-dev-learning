@@ -31,11 +31,13 @@ const StyledArticle = styled.article`
     font-weight: 500;
     padding-bottom: 1rem;
     color: #333;
+    font-size: 1.3rem;
   }
 
   h3 {
     font-weight: 400;
     color: #666;
+    font-size: 1rem;
   }
 
   h4 {

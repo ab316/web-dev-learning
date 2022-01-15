@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
 const StyledNav = styled.section`
-  padding-top: 2rem;
+  padding-top: 2.5rem;
 `;
 
 const StyledList = styled.ul`
   list-style: none;
-  color: #555;
+  color: #333;
   display: flex;
   flex-direction: row;
 `;
@@ -14,7 +14,7 @@ const StyledList = styled.ul`
 const StyledListItem = styled.li`
   cursor: pointer;
   font-size: 0.95rem;
-  padding: 1.5rem 0rem 0.5rem 0;
+  padding: 0 0rem 0.5rem 0;
   margin-right: 2rem;
   font-weight: 300;
   &:hover {
