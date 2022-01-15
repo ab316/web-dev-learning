@@ -13,7 +13,7 @@ const Home = () => {
   return (
     <Main>
       <StyledFlex>
-        <div style={{width: '100%'}}>
+        <div style={{width: '100%', flex: 8}}>
           <EmployeeNewsNav />
           <EmployeeNewsFeed />
         </div>
