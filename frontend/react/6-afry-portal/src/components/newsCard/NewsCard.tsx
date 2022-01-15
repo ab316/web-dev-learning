@@ -3,13 +3,12 @@ import dayjs from 'dayjs';
 import {INews} from 'interfaces/news';
 
 const StyledArticle = styled.article`
-  margin-bottom: 3rem;
   display: flex;
   flex-direction: row;
   align-content: center;
 
   .news-image {
-    width: 350px;
+    flex-basis: 38%;
     display: flex;
     align-items: center;
     margin-right: 2rem;
@@ -56,7 +55,8 @@ const StyledArticle = styled.article`
 
     & > span {
       padding-right: 1rem;
-      line-height: 1.6rem;
+      font-size: 0.9rem;
+      line-height: 1.5rem;
     }
 
     button {
@@ -73,7 +73,7 @@ const StyledArticle = styled.article`
       }
 
       span {
-        font-size: 1.2rem;
+        font-size: 1rem;
       }
     }
   }

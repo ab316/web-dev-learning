@@ -46,7 +46,50 @@ export const employeeNews: INews[] = [
   },
 ];
 
-export const globalNews = [];
+export const globalNews: INews[] = [
+  {
+    id: '4',
+    title: 'Our new sustainability e-learning is launched',
+    subtitle: 'Start this year with some new inspiring knowledge.',
+    tags: [],
+    comments: 0,
+    likes: 20,
+    image: 'https://afportalcdn.azureedge.net//newsimages/353e4d52-8e81-4e83-9e05-df1947e0010c.PNG',
+    createdBy: 'kalle Anderson',
+    category: 'Global News',
+    contentHtml: '',
+    createdAt: new Date(2022, 0, 14, 12, 30),
+    updatedAt: new Date(2022, 0, 14, 12, 30),
+  },
+  {
+    id: '5',
+    title: 'AFRY signs agreement to acquire Svea Power',
+    subtitle: 'We welcome new colleagues to the Energy Division in Sweden',
+    tags: [],
+    comments: 0,
+    likes: 78,
+    image: 'https://afportalcdn.azureedge.net//newsimages/509b4c0f-ce37-4337-a204-c53f79779566.jpg',
+    createdBy: 'Cool Guy',
+    category: 'Global News',
+    contentHtml: '',
+    createdAt: new Date(2022, 0, 13, 7),
+    updatedAt: new Date(2022, 0, 13, 7),
+  },
+  {
+    id: '6',
+    title: 'New assignments in wind projects in Finland',
+    subtitle: 'Neoen has chosen AFRY as their partner in wind measurements and analysis for upcoming wind projects.',
+    tags: [],
+    comments: 0,
+    likes: 31,
+    image: 'https://afportalcdn.azureedge.net//newsimages/bb552e63-d273-4aed-90d1-dfc373763125.jpg',
+    createdBy: 'Some Guy',
+    category: 'Global News',
+    contentHtml: '',
+    createdAt: new Date(2022, 0, 11, 12, 3),
+    updatedAt: new Date(2022, 0, 11, 12, 3),
+  },
+];
 
 export const banners: IBanner[] = [
   {image: '/images/banner-1.jpg', url: 'http://localhost:3000'},
