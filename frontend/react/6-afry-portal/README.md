@@ -1,3 +1,3 @@
 ==== AFRY Portal ====
 
-AFRY employee portal frontend written in React
+AFRY employee portal frontend prototype written in React
