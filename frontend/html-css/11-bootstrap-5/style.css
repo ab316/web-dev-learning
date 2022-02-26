@@ -1,0 +1,12 @@
+/* Adds 60px space at tht top of body so that the fixed navbar does not hide the top of the content */
+body::before {
+  display: block;
+  content: "";
+  height: 60px;
+}
+
+@media (min-width: 768px) {
+  .news-input {
+    width: 50%;
+  }
+}
